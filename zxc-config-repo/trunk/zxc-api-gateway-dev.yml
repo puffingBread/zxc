@@ -12,7 +12,7 @@ spring:
       max-file-size: 100Mb
       max-request-size: 100Mb
   application:
-    name: api-gateway
+    name: zxc-api-gateway
 hystrix:
   command:
     default:
