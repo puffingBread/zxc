@@ -1,0 +1,49 @@
+server:
+  port: 9999
+
+multipart:
+  maxFileSize: 100Mb
+  maxRequestSize: 100Mb
+
+spring:
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 100Mb
+      max-request-size: 100Mb
+  application:
+    name: api-gateway
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+eureka:
+  instance:
+    client:
+      registerWithEureka: false
+  client:
+    serviceUrl:
+      defaultZone:  http://localhost:1111/eureka
+zuul:
+  routes:
+    auth:
+      sensitiveHeaders: "*"
+      serviceId:  ZXC-AUTH
+      path: "/userauth/**"
+      stripPrefix:  false
+
+ribbon:
+  eureka:
+    enabled:  true
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:  trace

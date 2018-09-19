@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="DM"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+
+    <!-- override bootstrap. they must be appended after bootstrap.css -->
+    <link rel="stylesheet" href="../css/dashboard.css" th:href="@{/css/common.css}" type="text/css"/>
+    <link rel="stylesheet" href="../css/dashboard.css" th:href="@{/css/add.css}" type="text/css"/>
+
+    <!-- jQuery library -->
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+<nav th:replace="fragments/header :: header">
+
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar" th:replace="fragments/erpsidebar :: erpSidebar">
+        </div>
+
+
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+            <ul class="nav nav-tabs" >
+                <li role="presentation"><a href="#" th:href="@{/appuser/list}">用户列表</a></li>
+                <li role="presentation" class="active"><a href="#">新增用户</a></li>
+            </ul>
+            <div class="table-responsive placeholders">
+                <table class="table table-striped">
+
+                    <div class="means">
+                        <div class="means-top">
+                            <h3>新增用户 <span class="tip" style="display:none;"></span></h3>
+                        </div>
+                        <div class="means-body">
+                            <div >
+                                <div class="col-md-3">用户名称:  <span class="star">*</span></div>
+                                <div class="col-md-9">
+                                    <input type="text" class="login-input" id="appuserName"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-3 ">用户密码:<span class="star">*</span></div>
+                                <div class="col-md-9">
+                                    <input type="password" class="login-input" id="password"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-3 ">用户密码确认:<span class="star">*</span></div>
+                                <div class="col-md-9">
+                                    <input type="password" class="login-input" id="re_password"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-3 ">手机号码：<span class="star">*</span></div>
+                                <div class="col-md-9">
+                                    <input class="login-input" id="phone_num"/>
+                                </div>
+                            </div>
+                            <div class="means-btn">
+                                <button type="button" class="btn btn-success">确定</button>
+                                <button type="button" class="btn btn-warning">重置</button>
+                            </div>
+                        </div>
+                    </div>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+<script src="js/addAppuser.js" th:src="@{/js/addAppuser.js}"></script>
+</body>
+</html>

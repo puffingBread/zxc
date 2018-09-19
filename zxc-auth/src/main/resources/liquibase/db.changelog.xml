@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <property name="seq" value="bigint"/>
+    <property name="boolean" value="tinyint(1)"/>
+    <property name="enum" value="smallint"/>
+    <property name="type1" value="varchar(11)"/>
+    <property name="type2" value="varchar(15)"/>
+    <property name="type3" value="varchar(30)"/>
+    <property name="string1" value="varchar(64)"/>
+    <property name="string2" value="varchar(256)"/>
+    <property name="string3" value="varchar(2000)"/>
+    <property name="string4" value="text"/>
+    <property name="ts" value="datetime"/>
+    <property name="amount" value="decimal(10,2)"/>
+
+    <changeSet id="201708011907" author="victor" failOnError="true">
+        <createTable tableName="id_holder">
+            <column name="id_name" type="${string1}">
+                <constraints primaryKey="true" primaryKeyName="PK_id_holder" nullable="false"/>
+            </column>
+            <column name="id_counter" type="${seq}" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="id_holder"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="201707301443" author="victor" failOnError="true">
+        <createTable tableName="user" remarks="帐号">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" primaryKeyName="PK1_user" primaryKey="true"/>
+            </column>
+            <column name="user_name" type="varchar(30)" remarks="用户名">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(30)" remarks="密码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="int(1)" remarks="状态">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="user" columnNames="user_name" />
+    </changeSet>
+
+    <changeSet id="201708021443" author="victor" failOnError="true">
+        <createTable tableName="role" remarks="角色信息表">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKeyName="PK1_role" primaryKey="true"/>
+            </column>
+            <column name="role" type="varchar(10)" remarks="角色">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="201708101739" author="vie">
+        <createTable tableName="user_role">
+            <column name="user_id" type="${seq}">
+                <constraints primaryKey="true"
+                             primaryKeyName="PK1_user_role"
+                             nullable="false"
+                             foreignKeyName="FK1_role"
+                             referencedTableName="user"
+                             referencedColumnNames="user_id"/>
+            </column>
+            <column name="role_id" type="${seq}">
+                <constraints primaryKey="true"
+                             primaryKeyName="PK2_user_role"
+                             nullable="false"
+                             foreignKeyName="FK2_role"
+                             referencedTableName="role"
+                             referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="201707301455" author="victor" failOnError="true">
+        <createTable tableName="user_info" remarks="用户信息信息表">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" primaryKeyName="pk1_user_info" nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="FK1_user_info" referencedTableName="user" referencedColumnNames="user_id"/>
+            </column>
+            <column name="nike_name" type="varchar(20)" remarks="昵称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sex" type="int(1)" remarks="性别">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="int(3)" remarks="年龄">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mobile" type="int(12)" remarks="手机号码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="qq_number" type="int(15)" remarks="qq号码">
+                <constraints nullable="true"/>
+            </column>
+            <column name="wechat_number" type="varchar(50)" remarks="微信号">
+                <constraints nullable="true"/>
+            </column>
+            <column name="email" type="varchar(50)" remarks="邮箱">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_time" type="datetime" defaultValue="now()" remarks="记录创建时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_time" type="datetime" defaultValue="now()" remarks="记录更新时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="int(1)" remarks="状态">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+<!--
+    <changeSet id="3" author="oscar">
+        <insert tableName="user">
+            <column name="id">-1</column>
+            <column name="username">admin</column>
+            <column name="password">62aa793e8bb752c9ae612646a713a435</column>
+            <column name="created_by">-1</column>
+            <column name="updated_by">-1</column>
+            <column name="status">0</column>
+        </insert>
+
+        <insert tableName="role">
+            <column name="id">-1</column>
+            <column name="user_id">-1</column>
+            <column name="role">system</column>
+            <column name="status">0</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="201609181108" author="kevin" context="test">
+        <insert tableName="user">
+            <column name="id">10001</column>
+            <column name="username">13333333333</column>
+            <column name="password">9d9bb86843eadeec00829d0cb34bd37a</column>
+            <column name="created_by">-1</column>
+            <column name="updated_by">-1</column>
+        </insert>
+        <insert tableName="role">
+            <column name="id">-4</column>
+            <column name="user_id">10001</column>
+            <column name="role">visitor</column>
+            <column name="status">0</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="201609182214" author="kevin">
+        <update tableName="user">
+            <column name="password">21da7a3a16496730ca279e4dfc2630d7</column>
+            <where>id = 10001</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="201609261108" author="kevin" context="test">
+        <insert tableName="user">
+            <column name="id">-10002</column>
+            <column name="username">13333333334</column>
+            <column name="password">974a1c6748b0ffd76f7566a32e43bb05</column>
+            <column name="created_by">-1</column>
+            <column name="updated_by">-1</column>
+            <column name="status">0</column>
+        </insert>
+        <insert tableName="role">
+            <column name="user_id">-10002</column>
+            <column name="role">visitor</column>
+            <column name="role_id">-4</column>
+            <column name="status">0</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="201610070933" author="kevin" context="test">
+        <insert tableName="app_user">
+            <column name="id">-10003</column>
+            <column name="username">13333333335</column>
+            <column name="password">7dfa3a093053901bf4c19177875648c9</column>
+            <column name="mobile_phone_num">13333333335</column>
+            <column name="created_by">-1</column>
+            <column name="updated_by">-1</column>
+        </insert>
+        <insert tableName="user_role">
+            <column name="user_id">-10003</column>
+            <column name="role_id">-4</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="201610100948" author="kevin" context="test">
+        <insert tableName="app_user">
+            <column name="id">-10004</column>
+            <column name="username">13333333336</column>
+            <column name="password">701eda0f72474315d729baf5efe6f3d4</column>
+            <column name="mobile_phone_num">13333333335</column>
+            <column name="created_by">-1</column>
+            <column name="updated_by">-1</column>
+        </insert>
+
+        <insert tableName="user_role">
+            <column name="user_id">-10004</column>
+            <column name="role_id">-4</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="201610101411" author="kevin" context="test">
+        <insert tableName="app_user">
+            <column name="id">-10005</column>
+            <column name="username">13333333337</column>
+            <column name="password">1f03b57d3cb7e0c9a49c909537e1cf25</column>
+            <column name="mobile_phone_num">13333333337</column>
+            <column name="created_by">-1</column>
+            <column name="updated_by">-1</column>
+        </insert>
+
+        <insert tableName="user_role">
+            <column name="user_id">-10005</column>
+            <column name="role_id">-4</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="201610101703" author="oscar" context="test">
+        <insert tableName="app_user">
+            <column name="id">-10006</column>
+            <column name="username">13333333338</column>
+            <column name="password">ea971515fc561211e88c8b480385c903</column>
+            <column name="mobile_phone_num">13333333338</column>
+            <column name="created_by">-1</column>
+            <column name="updated_by">-1</column>
+        </insert>
+
+        <insert tableName="user_role">
+            <column name="user_id">-10006</column>
+            <column name="role_id">-4</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="201610102053" author="oscar" context="test">
+        <insert tableName="app_user">
+            <column name="id">-10007</column>
+            <column name="username">13333333339</column>
+            <column name="password">ca7df3f109ca854963ddf5cf94331bc5</column>
+            <column name="mobile_phone_num">13333333339</column>
+            <column name="created_by">-1</column>
+            <column name="updated_by">-1</column>
+        </insert>
+
+        <insert tableName="user_role">
+            <column name="user_id">-10007</column>
+            <column name="role_id">-4</column>
+        </insert>
+    </changeSet>
+
+
+    <changeSet id="201610121427" author="kevin" context="test">
+        <insert tableName="app_user">
+            <column name="id">-10008</column>
+            <column name="username">13333333349</column>
+            <column name="password">3bfd742b81d41db8782f660a4beb80f1</column>
+            <column name="mobile_phone_num">13333333339</column>
+            <column name="created_by">-1</column>
+            <column name="updated_by">-1</column>
+        </insert>
+
+        <insert tableName="user_role">
+            <column name="user_id">-10008</column>
+            <column name="role_id">-4</column>
+        </insert>
+    </changeSet>
+
+
+    <changeSet id="201610151055" author="kevin" context="test">
+        <insert tableName="app_user">
+            <column name="id">-10010</column>
+            <column name="username">13333333350</column>
+            <column name="password">e60315e67cf8126103c6a5556ea58c95</column>
+            <column name="mobile_phone_num">13333333350</column>
+            <column name="created_by">-1</column>
+            <column name="updated_by">-1</column>
+        </insert>
+
+        <insert tableName="user_role">
+            <column name="user_id">-10010</column>
+            <column name="role_id">-4</column>
+        </insert>
+    </changeSet>-->
+
+    <include file="liquibase/oauth_schema.sql"/>
+
+<!--    <changeSet id="201612021036" author="kevin">
+        <addUniqueConstraint tableName="oauth_client_details" columnNames="client_id"
+                             constraintName="UK1_oauth_client_details"/>
+    </changeSet>
+
+    <changeSet id="201612021406" author="kevin">
+        <addUniqueConstraint tableName="oauth_access_token" columnNames="authentication_id"
+                             constraintName="UK1_oauth_access_token"/>
+        <addUniqueConstraint tableName="oauth_refresh_token" columnNames="token_id"
+                             constraintName="UK1_oauth_refresh_token"/>
+    </changeSet>-->
+
+</databaseChangeLog>

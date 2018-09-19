@@ -1,0 +1,225 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.puffingBread</groupId>
+    <artifactId>zxc</artifactId>
+    <version>1.0</version>
+    <modules>
+        <module>zxc-auth</module>
+        <module>zxc-common</module>
+        <module>zxc-api-gateway</module>
+        <module>zxc-service-register</module>
+        <module>zxc-config</module>
+        <module>zxc-blog</module>
+        <!--<module>zxc-config-repo</module>-->
+    </modules>
+    <packaging>pom</packaging>
+
+    <name>zxc</name>
+    <url>http://maven.apache.org</url>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Camden.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.38</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>3.5.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.restdocs</groupId>
+                <artifactId>spring-restdocs-mockmvc</artifactId>
+                <version>${spring.restdoc.verion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.restdocs</groupId>
+                <artifactId>spring-restdocs-core</artifactId>
+                <version>${spring.restdoc.verion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${spring.security.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.retry</groupId>
+                <artifactId>spring-retry</artifactId>
+                <version>1.1.4.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.integration</groupId>
+                <artifactId>spring-integration-kafka</artifactId>
+                <version>2.0.1.RELEASE</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>1.3.2.RELEASE</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.liquibase</groupId>
+                    <artifactId>liquibase-maven-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <configuration>
+                        <propertyFileWillOverride>true</propertyFileWillOverride>
+                        <propertyFile>target/classes/liquibase/liquibase.properties</propertyFile>
+                        <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <includes>
+                            <include>**/*Documentation.java</include>
+                        </includes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.asciidoctor</groupId>
+                    <artifactId>asciidoctor-maven-plugin</artifactId>
+                    <version>1.5.2</version>
+                    <executions>
+                        <execution>
+                            <id>generate-docs</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>process-asciidoc</goal>
+                            </goals>
+                            <configuration>
+                                <backend>html</backend>
+                                <doctype>book</doctype>
+                                <attributes>
+                                    <snippets>${snippetsDirectory}</snippets>
+                                    <toc>left</toc>
+                                    <toclevels>4</toclevels>
+                                    <numbered/>
+                                </attributes>
+                                <outputDirectory>${project.build.directory}/classes/static</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.7</version>
+                    <executions>
+                        <execution>
+                            <id>copy-resources</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>
+                                    ${project.build.outputDirectory}/static/docs
+                                </outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>
+                                            ${project.build.directory}/generated-docs
+                                        </directory>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>0.4.13</version>
+                    <configuration>
+                        <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                        <dockerDirectory>src/main/docker</dockerDirectory>
+                        <resources>
+                            <resource>
+                                <targetPath>/</targetPath>
+                                <directory>${project.build.directory}</directory>
+                                <include>${project.build.finalName}.jar</include>
+                            </resource>
+                        </resources>
+                    </configuration>
+                    <dependencies>
+                        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+                        <dependency>
+                            <groupId>org.apache.httpcomponents</groupId>
+                            <artifactId>httpclient</artifactId>
+                            <version>4.5.1</version>
+                        </dependency>
+
+
+                        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
+                        <dependency>
+                            <groupId>org.apache.commons</groupId>
+                            <artifactId>commons-compress</artifactId>
+                            <version>1.12</version>
+                        </dependency>
+
+                    </dependencies>
+
+                </plugin>
+
+
+            </plugins>
+
+        </pluginManagement>
+
+    </build>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>
+        <docker.image.prefix>localhost:5000</docker.image.prefix>
+        <spring.cloud.version>1.1.5.RELEASE</spring.cloud.version>
+        <spring.security.version>2.0.1.RELEASE</spring.security.version>
+        <spring.boot.version>1.4.1.RELEASE</spring.boot.version>
+        <spring.cloud.security.version>1.1.3.RELEASE</spring.cloud.security.version>
+        <spring.cloud.feign.version>1.2.2.RELEASE</spring.cloud.feign.version>
+        <spring.cloud.eureka.version>1.2.2.RELEASE</spring.cloud.eureka.version>
+        <spring.restdoc.verion>1.1.2.RELEASE</spring.restdoc.verion>
+    </properties>
+
+</project>
