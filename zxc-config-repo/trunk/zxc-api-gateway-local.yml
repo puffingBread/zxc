@@ -27,7 +27,7 @@ eureka:
       registerWithEureka: false
   client:
     serviceUrl:
-      defaultZone:  http://localhost:1111/eureka
+      defaultZone:  http://localhost:1111/eureka/
 zuul:
   routes:
     auth:
