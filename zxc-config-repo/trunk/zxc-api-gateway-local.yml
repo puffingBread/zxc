@@ -35,6 +35,7 @@ zuul:
       serviceId:  ZXC-AUTH
       path: "/userauth/**"
       stripPrefix:  false
+    blog:
       sensitiveHeaders: "*"
       serviceId:  ZXC-BLOG
       path: "/blog/**"
