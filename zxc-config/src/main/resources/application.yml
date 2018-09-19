@@ -9,7 +9,7 @@ spring:
     config:
       server:
           git:
-            uri: https://github.com/puffingBread/zxc-simple
+            uri: https://github.com/puffingBread/zxc
             searchPaths: /zxc-config-repo/trunk
             force-pull: true
             default-label: master
