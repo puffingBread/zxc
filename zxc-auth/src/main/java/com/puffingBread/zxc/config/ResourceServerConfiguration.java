@@ -26,7 +26,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
     @Autowired
-    private PuffingBreadAuthenticationEntryPoint authenticationEntryPoint;
+    private ZxcAuthenticationEntryPoint authenticationEntryPoint;
 
 
 
