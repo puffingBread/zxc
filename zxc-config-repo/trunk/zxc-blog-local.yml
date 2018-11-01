@@ -10,10 +10,10 @@ spring:
   application:
       name: zxc-blog
   datasource:
+      driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://localhost:3306/zxc_blog?characterEncoding=UTF-8&useSSL=false
       username: root
       password:
-      driver-class-name: com.mysql.jdbc.Driver
       initialize: false
       test-on-borrow: false
       test-on-return: false
