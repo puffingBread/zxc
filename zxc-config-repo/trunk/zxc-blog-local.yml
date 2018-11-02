@@ -43,3 +43,8 @@ liquibase:
    enabled: true
    check-change-log-location: true
    change-log: classpath:/liquibase/db.changelog.xml
+
+authserver:
+  hostname: localhost
+  port: 8899
+  contextPath: userauth
