@@ -32,9 +32,6 @@ public class OAuthAgentServiceImpl implements OAuthAgentService {
     @Value("${spring.security.oauth2.client.clientSecret}")
     private String oauthClientSecret;
 
-    @Value("${spring.security.loginSecret}")
-    private String loginSecret;
-
     @Override
     public AccessToken getAcessToken(String username, String password) {
         RestTemplate restTemplate = new RestTemplate();
@@ -51,7 +48,7 @@ public class OAuthAgentServiceImpl implements OAuthAgentService {
         return resp.getBody();
     }
 
-    @Override
+/*    @Override
     public AccessToken getAcessToken(String openId) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setErrorHandler(new MyErrorHandler());
@@ -64,7 +61,7 @@ public class OAuthAgentServiceImpl implements OAuthAgentService {
             return null;
         }
         return resp.getBody();
-    }
+    }*/
 
     @Override
     public AccessToken getAcessTokenByClientId() {

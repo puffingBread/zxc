@@ -12,8 +12,7 @@ import java.util.List;
  */
 public interface ContentRepository extends JpaRepository<Content, Long> {
 
-    @Query("select c from Content c where c.dynamicId = :dynamicId")
-    List<Content> findByDynamicId(Long dynamicId);
+    Content findByIdAndStatus(Long id, Integer status);
 
-    Content findById(long id);
+    List<Content> findByIdIn(List<Long> contentIds);
 }

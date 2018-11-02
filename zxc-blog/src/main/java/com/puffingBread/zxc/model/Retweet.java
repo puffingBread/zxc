@@ -11,29 +11,29 @@ import java.sql.Timestamp;
  */
 @Entity
 public class Retweet {
-    private long dynamicId;
-    private long userId;
+    private Long dynamicId;
+    private Long userId;
     private Timestamp createdTime;
     private Timestamp updateTime;
-    private int status;
+    private Integer status;
 
     @Basic
     @Column(name = "dynamic_id", nullable = false)
-    public long getDynamicId() {
+    public Long getDynamicId() {
         return dynamicId;
     }
 
-    public void setDynamicId(long dynamicId) {
+    public void setDynamicId(Long dynamicId) {
         this.dynamicId = dynamicId;
     }
 
     @Basic
     @Column(name = "user_id", nullable = false)
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -59,11 +59,11 @@ public class Retweet {
 
     @Basic
     @Column(name = "status", nullable = false)
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

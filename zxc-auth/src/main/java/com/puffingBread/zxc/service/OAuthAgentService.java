@@ -8,7 +8,9 @@ import com.puffingBread.zxc.vo.AccessToken;
 public interface OAuthAgentService {
     AccessToken getAcessToken(String username, String password);
 
+/*
     AccessToken getAcessToken(String openId);
+*/
 
     AccessToken getAcessTokenByClientId();
 }

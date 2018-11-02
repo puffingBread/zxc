@@ -62,9 +62,6 @@
             <column name="id" type="bigint">
                 <constraints nullable="false" primaryKeyName="PK1_content" primaryKey="true"/>
             </column>
-            <column name="dynamic_id" type="bigint" remarks="动态表id">
-                <constraints nullable="false" foreignKeyName="FK1_content" referencedTableName="dynamic" referencedColumnNames="id"/>
-            </column>
             <column name="content_type" type="int" remarks="动态类型">
                 <constraints nullable="false"/>
             </column>
@@ -74,11 +71,17 @@
             <column name="content" type="text" remarks="文字内容">
                 <constraints nullable="true"/>
             </column>
+            <column name="status" type="int(1)" remarks="状态">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
     <changeSet id="201708031725" author="victor" failOnError="true">
         <createTable tableName="browser" remarks="浏览记录表">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKeyName="PK1_browser" primaryKey="true"/>
+            </column>
             <column name="dynamic_id" type="bigint" remarks="动态表id">
                 <constraints nullable="false" foreignKeyName="FK1_browser" referencedTableName="dynamic" referencedColumnNames="id"/>
             </column>
@@ -99,6 +102,9 @@
 
     <changeSet id="201708031647" author="victor" failOnError="true">
         <createTable tableName="comment" remarks="评论记录">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKeyName="PK1_comment" primaryKey="true"/>
+            </column>
             <column name="dynamic_id" type="bigint" remarks="动态表id">
                 <constraints nullable="false" foreignKeyName="FK1_comment" referencedTableName="dynamic" referencedColumnNames="id"/>
             </column>
@@ -125,6 +131,9 @@
     
     <changeSet id="201708031654" author="victor" failOnError="true">
         <createTable tableName="retweet" remarks="转发记录">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKeyName="PK1_retweet" primaryKey="true"/>
+            </column>
             <column name="dynamic_id" type="bigint" remarks="动态id">
                 <constraints nullable="false" foreignKeyName="FK1_retweet" referencedTableName="dynamic" referencedColumnNames="id"/>
             </column>
@@ -145,6 +154,9 @@
 
     <changeSet id="201708031702" author="victor" failOnError="true">
         <createTable tableName="thumb_up" remarks="点赞记录">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKeyName="PK1_thumb_up" primaryKey="true"/>
+            </column>
             <column name="dynamic_id" type="bigint" remarks="动态id">
                 <constraints nullable="false" foreignKeyName="FK1_thumb_up" referencedTableName="dynamic" referencedColumnNames="id"/>
             </column>
@@ -165,6 +177,9 @@
 
     <changeSet id="201708031705" author="victor" failOnError="true">
         <createTable tableName="reward" remarks="打赏记录">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKeyName="PK1_reward" primaryKey="true"/>
+            </column>
             <column name="dynamic_id" type="bigint" remarks="动态id">
                 <constraints nullable="false" foreignKeyName="FK1_reward" referencedTableName="dynamic" referencedColumnNames="id"/>
             </column>
@@ -188,6 +203,9 @@
     
     <changeSet id="201708151733" author="victor" failOnError="true">
         <createTable tableName="users_relationship" remarks="用户关系表">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKeyName="PK1_users_relationship" primaryKey="true"/>
+            </column>
             <column name="user_id" type="bigint" remarks="用户id">
                 <constraints nullable="false"/>
             </column>
@@ -211,7 +229,7 @@
             <column name="user_id" type="bigint" remarks="操作人">
                 <constraints nullable="false"/>
             </column>
-            <column name="operated_id" type="${seq}" remarks="被操作用户id">
+            <column name="operated_id" type="bigint" remarks="被操作用户id">
                 <constraints nullable="false"/>
             </column>
             <column name="created_time" type="datetime" defaultValue="now()" remarks="记录创建时间">

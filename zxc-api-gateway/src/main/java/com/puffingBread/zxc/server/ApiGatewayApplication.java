@@ -1,10 +1,15 @@
 package com.puffingBread.zxc.server;
 
+import com.puffingBread.zxc.filter.AuthRedirectFilter;
+import com.puffingBread.zxc.filter.UserAuthFilter;
+import com.puffingBread.zxc.filter.ZuulExceptionFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,4 +28,28 @@ public class ApiGatewayApplication {
         SpringApplication.run(ApiGatewayApplication.class, args);
     }
 
+    @Bean
+    FilterRegistrationBean getAuthRedirectFilter() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(new AuthRedirectFilter());
+        registration.addUrlPatterns(
+                "/userauth/login/*",
+                "/userauth/logout/*",
+                "/userauth/user",
+                "/userauth/userInfo/*",
+                "/userauth/sms/**");
+        registration.setName("AuthRedirectFilter");
+        registration.setOrder(1);
+        return registration;
+    }
+
+    @Bean
+    UserAuthFilter getUserAuthFilter() {
+        return new UserAuthFilter();
+    }
+
+    @Bean
+    ZuulExceptionFilter getZuulExceptionFilter() {
+        return new ZuulExceptionFilter();
+    }
 }

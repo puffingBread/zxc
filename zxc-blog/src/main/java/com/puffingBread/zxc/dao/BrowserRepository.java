@@ -12,6 +12,7 @@ import java.util.List;
  */
 public interface BrowserRepository extends JpaRepository<Browser, Long> {
 
-    @Query("select b from Browser b where b.dynamicId = :dynamicId")
-    List<Browser> findByDynamicId(Long dynamicId);
+    List<Browser> findByDynamicIdAndStatus(Long dynamicId, Integer status);
+
+    Browser findByIdAndStatus(Long id, Integer status);
 }

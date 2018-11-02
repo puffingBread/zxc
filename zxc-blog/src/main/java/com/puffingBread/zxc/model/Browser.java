@@ -5,67 +5,80 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2017/8/3.
  */
 @Entity
 public class Browser {
-    private long dynamicId;
-    private long userId;
-    private Timestamp createdTime;
-    private Timestamp updateTime;
-    private int status;
+    private Long id;
+    private Long dynamicId;
+    private Long userId;
+    private Date createdTime;
+    private Date updateTime;
+    private Integer status;
+
+    @Id
+    @Column(name = "id", nullable = false)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Basic
     @Column(name = "dynamic_id", nullable = false)
-    public long getDynamicId() {
+    public Long getDynamicId() {
         return dynamicId;
     }
-
-    public void setDynamicId(long dynamicId) {
+    public void setDynamicId(Long dynamicId) {
         this.dynamicId = dynamicId;
     }
 
+
     @Basic
     @Column(name = "user_id", nullable = false)
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
     @Basic
     @Column(name = "created_time", nullable = false)
-    public Timestamp getCreatedTime() {
+    public Date getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(Timestamp createdTime) {
+    public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
     @Basic
     @Column(name = "update_time", nullable = false)
-    public Timestamp getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
     @Basic
     @Column(name = "status", nullable = false)
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -93,14 +106,5 @@ public class Browser {
         return result;
     }
 
-    private String id;
 
-    @Id
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }

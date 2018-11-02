@@ -1,8 +1,5 @@
 package com.puffingBread.zxc.vo;
 
-/**
- * Created by Oscar on 2017/2/7.
- */
 public class RspVo<T> {
     int resultCode;
     String resultMsg;

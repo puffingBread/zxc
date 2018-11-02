@@ -87,6 +87,19 @@ public class DynamicVo implements Serializable {
                 '}';
     }
 
+    public static DynamicVo toVo(Dynamic dynamic) {
+
+        DynamicVo vo = new DynamicVo();
+        vo.setId(dynamic.getId());
+        vo.setUserId(dynamic.getUserId());
+        vo.setNikeName(dynamic.getNikeName());
+        vo.setCreatedTime(dynamic.getCreatedTime().getTime());
+        vo.setUpdateTime(dynamic.getUpdateTime().getTime());
+        vo.setStatus(dynamic.getStatus());
+
+        return vo;
+    }
+
     public static DynamicVo toVo(Dynamic dynamic, Content content){
         DynamicVo vo = new DynamicVo();
         vo.setId(dynamic.getId());

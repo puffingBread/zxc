@@ -12,31 +12,32 @@ import java.util.Date;
  */
 @Entity
 public class Dynamic {
-    private long id;
-    private long userId;
+
+    private Long id;
+    private Long userId;
     private String nikeName;
-    private long contentId;
+    private Long contentId;
     private Date createdTime;
     private Date updateTime;
-    private int status;
+    private Integer status;
 
     @Id
     @Column(name = "id", nullable = false)
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Basic
     @Column(name = "user_id", nullable = false)
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -52,11 +53,11 @@ public class Dynamic {
 
     @Basic
     @Column(name = "content_id", nullable = false)
-    public long getContentId() {
+    public Long getContentId() {
         return contentId;
     }
 
-    public void setContentId(long contentId) {
+    public void setContentId(Long contentId) {
         this.contentId = contentId;
     }
 
@@ -82,11 +83,11 @@ public class Dynamic {
 
     @Basic
     @Column(name = "status", nullable = false)
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
