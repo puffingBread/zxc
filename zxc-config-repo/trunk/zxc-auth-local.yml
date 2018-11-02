@@ -47,7 +47,6 @@ spring:
           userAuthorizationUri: http://localhost:8899/userauth/oauth/authorize
           clientId: client
           clientSecret: secret
-      loginSecret:  puffing007
 
 liquibase:
    enabled: true
