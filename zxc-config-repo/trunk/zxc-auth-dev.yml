@@ -31,22 +31,23 @@ spring:
           current_session_context_class: org.springframework.orm.hibernate4.SpringSessionContext
   thymeleaf:
       content-type: application/xhtml+xml
-security:
-    user:
-      password: password
-    oauth2:
-      resource:
-        userInfoUri:  http://192.168.27.10:8899/userauth/me
-        preferTokenInfo:  false
-      sso:
-        home:
-          path: /,/**/*.html
-          secure: false
-      client:
-        accessTokenUri: http://192.168.27.10:8899/userauth/oauth/token
-        userAuthorizationUri: http://192.168.27.10:8899/userauth/oauth/authorize
-        clientId: client
-        clientSecret: secret
+
+  security:
+      user:
+        password: password
+      oauth2:
+        resource:
+          userInfoUri:  http://192.168.27.10:8899/userauth/me
+          preferTokenInfo:  false
+        sso:
+          home:
+            path: /,/**/*.html
+            secure: false
+        client:
+          accessTokenUri: http://192.168.27.10:8899/userauth/oauth/token
+          userAuthorizationUri: http://192.168.27.10:8899/userauth/oauth/authorize
+          clientId: client
+          clientSecret: secret
 
 liquibase:
    enabled: true

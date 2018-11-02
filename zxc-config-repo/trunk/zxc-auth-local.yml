@@ -32,22 +32,22 @@ spring:
   thymeleaf:
       content-type: application/xhtml+xml
 
-security:
-    user:
-      password: password
-    oauth2:
-      resource:
-        userInfoUri:  http://localhost:8899/userauth/me
-        preferTokenInfo:  false
-      sso:
-        home:
-          path: /,/**/*.html
-          secure: false
-      client:
-        accessTokenUri: http://localhost:8899/userauth/oauth/token
-        userAuthorizationUri: http://localhost:8899/userauth/oauth/authorize
-        clientId: client
-        clientSecret: secret
+  security:
+      user:
+        password: password
+      oauth2:
+        resource:
+          userInfoUri:  http://localhost:8899/userauth/me
+          preferTokenInfo:  false
+        sso:
+          home:
+            path: /,/**/*.html
+            secure: false
+        client:
+          accessTokenUri: http://localhost:8899/userauth/oauth/token
+          userAuthorizationUri: http://localhost:8899/userauth/oauth/authorize
+          clientId: client
+          clientSecret: secret
 
 liquibase:
    enabled: true
