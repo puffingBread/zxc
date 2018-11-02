@@ -12,6 +12,16 @@ spring:
       enabled: true
       max-file-size: 100Mb
       max-request-size: 100Mb
+  security:
+    oauth2:
+      resource:
+        userInfoUri: http://192.168.27.10:8899/userauth/me
+        preferTokenInfo: false
+      client:
+        accessTokenUri: http://192.168.27.10:8899/userauth/oauth/token
+        userAuthorizationUri: http://192.168.27.10:8899/userauth/oauth/authorize
+        clientId: client
+        clientSecret: secret
 
 hystrix:
   command:
@@ -43,17 +53,6 @@ eureka:
     serviceUrl:
       defaultZone:  http://192.168.27.10:1111/eureka
 
-security:
-  oauth2:
-    resource:
-      userInfoUri: http://192.168.27.10:8899/userauth/me
-      preferTokenInfo: false
-    client:
-      accessTokenUri: http://192.168.27.10:8899/userauth/oauth/token
-      userAuthorizationUri: http://192.168.27.10:8899/userauth/oauth/authorize
-      clientId: client
-      clientSecret: secret
-      
 zuul:
   routes:
     auth:
