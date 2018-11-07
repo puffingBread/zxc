@@ -24,10 +24,8 @@ public class GatewayWebSecurityConfiguration extends WebSecurityConfigurerAdapte
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().mvcMatchers(
                 "/userauth/oauth/**",
-                "/userauth/webjars/**",
-                "/userauth/images/**",
-                "/userauth/login/client",
-                "/userauth/login/worker",
+                "/userauth/hello",
+                "/userauth/helloR",
                 "/userauth/loginPage",
                 "/userauth/logout/confirm"
         );//ssc-auth

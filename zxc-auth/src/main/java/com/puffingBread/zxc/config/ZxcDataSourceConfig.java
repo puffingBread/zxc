@@ -13,7 +13,7 @@ import javax.sql.DataSource;
  * 多数据源配置
  */
 @Configuration
-public class DataSourceConfig {
+public class ZxcDataSourceConfig {
 
     @Bean
     @Primary

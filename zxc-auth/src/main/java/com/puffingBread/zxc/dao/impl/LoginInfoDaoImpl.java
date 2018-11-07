@@ -1,6 +1,6 @@
 package com.puffingBread.zxc.dao.impl;
 
-import com.puffingBread.zxc.config.DataSourceConfig;
+import com.puffingBread.zxc.config.ZxcDataSourceConfig;
 import com.puffingBread.zxc.dao.LoginInfoDao;
 import com.puffingBread.zxc.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.List;
 public class LoginInfoDaoImpl implements LoginInfoDao {
 
     @Autowired
-    private DataSourceConfig jdbcTemplate;
+    private ZxcDataSourceConfig jdbcTemplate;
 
     @Override
     public List<User> getByTime(Date startTime, Date endTime) {

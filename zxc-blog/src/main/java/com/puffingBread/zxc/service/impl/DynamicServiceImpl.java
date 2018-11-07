@@ -71,16 +71,25 @@ public class DynamicServiceImpl implements DynamicService {
             Assert.isNull(userId);
         }
 
-        List<Dynamic> dynamicList = dynamicRepository.findByUserId(userId);
-        List<DynamicVo> dynamicVos = dynamicList.stream().map(DynamicVo::toVo).collect(Collectors.toList());
+        List<Dynamic> dynamicList = dynamicRepository.findByUserIdAndStatus(userId, 0);
+        List<DynamicVo> dynamicVos = dynamicList
+                .stream()
+                .map(DynamicVo::toVo)
+                .collect(Collectors.toList());
 
-        List<Long> contentIds = dynamicList.stream().map(Dynamic::getContentId).collect(Collectors.toList());
+        List<Long> contentIds = dynamicList
+                .stream()
+                .map(Dynamic::getContentId)
+                .collect(Collectors.toList());
+
         List<Content> contentList = contentRepository.findByIdIn(contentIds);
 
-        Map<Long, ContentVo> contentVoMap = contentList.stream().collect(Collectors.toMap(Content::getId, ContentVo::toVo));
+        Map<Long, ContentVo> contentVoMap = contentList
+                .stream()
+                .collect(Collectors.toMap(Content::getId, ContentVo::toVo));
 
-
-        dynamicVos.forEach(dynamicVo -> dynamicVo.setContent(contentVoMap.get(dynamicVo.getId())));
+        dynamicVos
+                .forEach(dynamicVo -> dynamicVo.setContent(contentVoMap.get(dynamicVo.getId())));
 
         return dynamicVos;
     }

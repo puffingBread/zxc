@@ -3,7 +3,6 @@ package com.puffingBread.zxc.vo;
 import com.puffingBread.zxc.model.User;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 /**
  * Created by Administrator on 2017/8/2.
@@ -49,21 +48,21 @@ public class UserVo implements Serializable {
 
     public static UserVo toVo(User user){
         UserVo vo = new UserVo();
-        vo.setUserId(user.getUserId());
-        vo.setUserName(user.getUserName());
-        vo.setPassword(user.getPassword());
-        vo.setStatus(user.getStatus());
+//        vo.setUserId(user.getUserId());
+//        vo.setUserName(user.getUserName());
+//        vo.setPassword(user.getPassword());
+//        vo.setStatus(user.getStatus());
         return vo;
     }
 
     public static User toModel(UserVo vo){
         User user = new User();
-        if (vo.getUserId() != null){
-            user.setUserId(vo.getUserId());
-        }
-        user.setUserName(vo.getUserName());
-        user.setPassword(vo.getPassword());
-        user.setStatus(vo.getStatus() == null ? 0 : vo.getStatus());
+//        if (vo.getUserId() != null){
+//            user.setUserId(vo.getUserId());
+//        }
+//        user.setUserName(vo.getUserName());
+//        user.setPassword(vo.getPassword());
+//        user.setStatus(vo.getStatus() == null ? 0 : vo.getStatus());
         return user;
     }
 }

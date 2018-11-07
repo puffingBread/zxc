@@ -1,8 +1,8 @@
 package com.puffingBread.zxc.service.impl;
 
 import com.puffingBread.zxc.dao.UserRepository;
-import com.puffingBread.zxc.model.RspVo;
 import com.puffingBread.zxc.model.User;
+import com.puffingBread.zxc.vo.RspVo;
 import com.puffingBread.zxc.service.UserService;
 import com.puffingBread.zxc.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;

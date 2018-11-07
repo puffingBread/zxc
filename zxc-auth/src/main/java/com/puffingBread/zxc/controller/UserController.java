@@ -35,7 +35,7 @@ public class UserController {
     public Map<String, Object> postUser(@ModelAttribute User user) {
         // 处理"/users/"的POST请求，用来创建User
         // 除了@ModelAttribute绑定参数之外，还可以通过@RequestParam从页面中传递参数
-        // users.put(user.getId(), user);
+        // users.put(user.getUserId(), user);
         Map<String , Object> result = new HashMap<>();
         result.put("code", "200");
         result.put("data" , userService.save(user));

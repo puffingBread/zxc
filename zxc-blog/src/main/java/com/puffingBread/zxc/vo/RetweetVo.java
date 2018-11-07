@@ -1,15 +1,10 @@
 package com.puffingBread.zxc.vo;
 
-import com.puffingBread.zxc.model.Browser;
+import com.puffingBread.zxc.model.Retweet;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
-public class BrowserVo {
+public class RetweetVo {
 
     private Long id;
     private Long dynamicId;
@@ -18,36 +13,36 @@ public class BrowserVo {
     private Date updateTime;
     private Integer status;
 
-    public static BrowserVo toVo(Browser browser) {
-        if (browser == null) {
+    public static RetweetVo toVo(Retweet retweet) {
+        if (retweet == null) {
             return null;
         }
 
-        BrowserVo browserVo = new BrowserVo();
-        browserVo.setId(browser.getId());
-        browserVo.setDynamicId(browser.getDynamicId());
-        browserVo.setUserId(browser.getUserId());
-        browserVo.setCreatedTime(browser.getCreatedTime());
-        browserVo.setUpdateTime(browser.getUpdateTime());
-        browserVo.setStatus(browser.getStatus());
+        RetweetVo retweetVo = new RetweetVo();
+        retweetVo.setId(retweet.getId());
+        retweetVo.setDynamicId(retweet.getDynamicId());
+        retweetVo.setUserId(retweet.getUserId());
+        retweetVo.setCreatedTime(retweet.getCreatedTime());
+        retweetVo.setUpdateTime(retweet.getUpdateTime());
+        retweetVo.setStatus(retweet.getStatus());
 
-        return browserVo;
+        return retweetVo;
     }
 
-    public static Browser toModel(BrowserVo browserVo) {
-        if (browserVo == null) {
+    public static Retweet toModel(RetweetVo retweetVo) {
+        if (retweetVo == null) {
             return null;
         }
 
-        Browser browser = new Browser();
-        browser.setId(browserVo.getId());
-        browser.setDynamicId(browserVo.getDynamicId());
-        browser.setUserId(browserVo.getUserId());
-        browser.setCreatedTime(browserVo.getCreatedTime());
-        browser.setUpdateTime(browserVo.getUpdateTime());
-        browser.setStatus(browserVo.getStatus());
+        Retweet retweet = new Retweet();
+        retweet.setId(retweetVo.getId());
+        retweet.setDynamicId(retweetVo.getDynamicId());
+        retweet.setUserId(retweetVo.getUserId());
+        retweet.setCreatedTime(retweetVo.getCreatedTime());
+        retweet.setUpdateTime(retweetVo.getUpdateTime());
+        retweet.setStatus(retweetVo.getStatus());
 
-        return browser;
+        return retweet;
     }
 
     public Long getId() {

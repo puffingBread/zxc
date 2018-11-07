@@ -12,6 +12,9 @@ import java.util.List;
  */
 public interface ThumbUpRepository extends JpaRepository<ThumbUp, Long> {
 
-    @Query("select d from ThumbUp d where d.dynamicId = :dynamicId")
-    List<ThumbUp> findByDynamicId(Long dynamicId);
+    ThumbUp findByIdAndStatus(Long id, Integer status);
+
+    List<ThumbUp> findByDynamicIdAndStatus(Long dynamicId, Integer status);
+
+    Integer countByDynamicIdAndStatus(Long dynamicId, Integer status);
 }

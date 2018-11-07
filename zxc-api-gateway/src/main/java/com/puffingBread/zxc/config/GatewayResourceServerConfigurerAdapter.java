@@ -20,7 +20,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 public class GatewayResourceServerConfigurerAdapter extends ResourceServerConfigurerAdapter {
 
     @Autowired
-    private SscAuthenticationEntryPoint authenticationEntryPoint;
+    private ZxcAuthenticationEntryPoint authenticationEntryPoint;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {

@@ -120,35 +120,35 @@ public class UserInfoVo implements Serializable {
 
     public static UserInfo toModel(UserInfoVo vo){
         UserInfo userInfo = new UserInfo();
-        userInfo.setId(vo.getId());
-        userInfo.setUserId(vo.getUserId());
-        userInfo.setNikeName(vo.getNikeName());
-        userInfo.setAge(vo.getAge());
-        userInfo.setSex(vo.getSex());
-        userInfo.setMobile(vo.getMobile());
-        userInfo.seteMail(vo.geteMail());
-        userInfo.setQqNumber(vo.getQqNumber());
-        userInfo.setWeixinNumber(vo.getWeixinNumber());
-        userInfo.setCreateTime(new Date(vo.getCreateTime()));
-        userInfo.setUpdateTime(new Date(vo.getCreateTime()));
-        userInfo.setStatus(vo.getStatus());
+//        userInfo.setUserId(vo.getUserId());
+//        userInfo.setUserId(vo.getUserId());
+//        userInfo.setNikeName(vo.getNikeName());
+//        userInfo.setAge(vo.getAge());
+//        userInfo.setSex(vo.getSex());
+//        userInfo.setMobile(vo.getMobile());
+//        userInfo.seteMail(vo.geteMail());
+//        userInfo.setQqNumber(vo.getQqNumber());
+//        userInfo.setWeixinNumber(vo.getWeixinNumber());
+//        userInfo.setCreateTime(new Date(vo.getCreateTime()));
+//        userInfo.setUpdateTime(new Date(vo.getCreateTime()));
+//        userInfo.setStatus(vo.getStatus());
         return userInfo;
     }
 
     public static UserInfoVo toVo(UserInfo userInfo){
         UserInfoVo vo = new UserInfoVo();
-        vo.setId(userInfo.getId());
-        vo.setUserId(userInfo.getUserId());
-        vo.setNikeName(userInfo.getNikeName());
-        vo.setAge(userInfo.getAge());
-        vo.setSex(userInfo.getSex());
-        vo.setMobile(userInfo.getMobile());
-        vo.setQqNumber(userInfo.getQqNumber());
-        vo.setWeixinNumber(userInfo.getWeixinNumber());
-        vo.seteMail(userInfo.geteMail());
-        vo.setCreateTime((int)(userInfo.getCreateTime().getTime()));
-        vo.setUpdateTime((int)userInfo.getCreateTime().getTime());
-        vo.setStatus(userInfo.getStatus());
+//        vo.setUserId(userInfo.getUserId());
+//        vo.setUserId(userInfo.getUserId());
+//        vo.setNikeName(userInfo.getNikeName());
+//        vo.setAge(userInfo.getAge());
+//        vo.setSex(userInfo.getSex());
+//        vo.setMobile(userInfo.getMobile());
+//        vo.setQqNumber(userInfo.getQqNumber());
+//        vo.setWeixinNumber(userInfo.getWeixinNumber());
+//        vo.seteMail(userInfo.geteMail());
+//        vo.setCreateTime((int)(userInfo.getCreateTime().getTime()));
+//        vo.setUpdateTime((int)userInfo.getCreateTime().getTime());
+//        vo.setStatus(userInfo.getStatus());
         return vo;
     }
 }

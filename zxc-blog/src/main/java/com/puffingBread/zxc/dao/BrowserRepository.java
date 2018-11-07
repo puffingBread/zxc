@@ -15,4 +15,6 @@ public interface BrowserRepository extends JpaRepository<Browser, Long> {
     List<Browser> findByDynamicIdAndStatus(Long dynamicId, Integer status);
 
     Browser findByIdAndStatus(Long id, Integer status);
+
+    Integer countByDynamicIdAndStatus(Long dynamicId, Integer status);
 }

@@ -1,4 +1,4 @@
-package com.puffingBread.zxc.model;
+package com.puffingBread.zxc.vo;
 
 public class RspVo<T> {
     int resultCode;

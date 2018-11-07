@@ -14,8 +14,7 @@ import java.util.List;
  */
 public interface DynamicRepository extends JpaRepository<Dynamic, Long> {
 
-    @Query("select d from Dynamic d where d.userId = :userId")
-    List<Dynamic> findByUserId(@Param("userId") Long userId);
+    List<Dynamic> findByUserIdAndStatus(Long userId, Integer status);
 
     @Query("select d from Dynamic d where d.updateTime >= :startTime and d.updateTime <= :endTime")
     List<Dynamic> findByUpdateTime(Date startTime, Date endTime);

@@ -14,7 +14,7 @@ import java.io.IOException;
  * Created by kevin on 18.11.2016.
  */
 @Component
-public class SscAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class ZxcAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         response.setStatus(HttpStatus.UNAUTHORIZED.value());

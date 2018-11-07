@@ -83,7 +83,7 @@
                 <constraints nullable="false" primaryKeyName="PK1_browser" primaryKey="true"/>
             </column>
             <column name="dynamic_id" type="bigint" remarks="动态表id">
-                <constraints nullable="false" foreignKeyName="FK1_browser" referencedTableName="dynamic" referencedColumnNames="id"/>
+                <constraints nullable="false" />
             </column>
             <column name="user_id" type="bigint" remarks="用户id">
                 <constraints nullable="false"/>
@@ -106,7 +106,7 @@
                 <constraints nullable="false" primaryKeyName="PK1_comment" primaryKey="true"/>
             </column>
             <column name="dynamic_id" type="bigint" remarks="动态表id">
-                <constraints nullable="false" foreignKeyName="FK1_comment" referencedTableName="dynamic" referencedColumnNames="id"/>
+                <constraints nullable="false" />
             </column>
             <column name="content" type="text" remarks="评论内容">
                 <constraints nullable="false"/>
@@ -135,7 +135,7 @@
                 <constraints nullable="false" primaryKeyName="PK1_retweet" primaryKey="true"/>
             </column>
             <column name="dynamic_id" type="bigint" remarks="动态id">
-                <constraints nullable="false" foreignKeyName="FK1_retweet" referencedTableName="dynamic" referencedColumnNames="id"/>
+                <constraints nullable="false"/>
             </column>
             <column name="user_id" type="bigint" remarks="用户id">
                 <constraints nullable="false"/>
@@ -158,7 +158,7 @@
                 <constraints nullable="false" primaryKeyName="PK1_thumb_up" primaryKey="true"/>
             </column>
             <column name="dynamic_id" type="bigint" remarks="动态id">
-                <constraints nullable="false" foreignKeyName="FK1_thumb_up" referencedTableName="dynamic" referencedColumnNames="id"/>
+                <constraints nullable="false"/>
             </column>
             <column name="user_id" type="bigint" remarks="用户id">
                 <constraints nullable="false"/>
@@ -181,7 +181,7 @@
                 <constraints nullable="false" primaryKeyName="PK1_reward" primaryKey="true"/>
             </column>
             <column name="dynamic_id" type="bigint" remarks="动态id">
-                <constraints nullable="false" foreignKeyName="FK1_reward" referencedTableName="dynamic" referencedColumnNames="id"/>
+                <constraints nullable="false"/>
             </column>
             <column name="user_id" type="bigint" remarks="用户id">
                 <constraints nullable="false"/>

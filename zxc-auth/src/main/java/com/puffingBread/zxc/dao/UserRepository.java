@@ -12,16 +12,12 @@ import java.util.List;
  */
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query("select u from User u where u.status > -1 and u.userId = :id ")
     User findById(Long id);
-
-    @Query("select u from User u where u.status > -1")
-    List<User> getAll();
 
     User save(User user);
 
-    @Query("update User u set u.status = -2 where u.userId = :id")
+    @Query("update User u set u.status = -2 where u.id = :id")
     void delete(Long id);
 
-    User findByUserName(@Param("username") String username);
+    User findByUsername(@Param("username") String username);
 }

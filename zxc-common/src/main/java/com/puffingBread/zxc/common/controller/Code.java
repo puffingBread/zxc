@@ -1,8 +1,5 @@
 package com.puffingBread.zxc.common.controller;
 
-/**
- * Created by cliang on 16/6/15.
- */
 public enum Code {
     WITHOUT(-2, "数据不存在"),
     ERROR(-1, "请求失败"),
@@ -15,9 +12,9 @@ public enum Code {
     public int    code;
     public String name;
 
-    private Code(){}
+    Code(){}
 
-    private Code(int code, String name){
+    Code(int code, String name){
         this.code = code;
         this.name = name;
     }

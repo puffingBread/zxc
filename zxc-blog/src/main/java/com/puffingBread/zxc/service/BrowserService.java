@@ -11,6 +11,8 @@ public interface BrowserService {
 
     void delete(Long browserId) throws ReadMessageException;
 
+    void deleteByDynamicId(Long dynamicId) throws ReadMessageException;
+
     List<BrowserVo> getByDynamicId(Long dynamicId) throws ReadMessageException;
 
 }

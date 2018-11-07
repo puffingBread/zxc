@@ -5,17 +5,29 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2017/8/3.
  */
 @Entity
 public class Retweet {
+    private Long id;
     private Long dynamicId;
     private Long userId;
-    private Timestamp createdTime;
-    private Timestamp updateTime;
+    private Date createdTime;
+    private Date updateTime;
     private Integer status;
+
+    @Id
+    @Column(name = "id", nullable = false)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Basic
     @Column(name = "dynamic_id", nullable = false)
@@ -39,21 +51,21 @@ public class Retweet {
 
     @Basic
     @Column(name = "created_time", nullable = false)
-    public Timestamp getCreatedTime() {
+    public Date getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(Timestamp createdTime) {
+    public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
     @Basic
     @Column(name = "update_time", nullable = false)
-    public Timestamp getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -91,16 +103,5 @@ public class Retweet {
         result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
         result = 31 * result + status;
         return result;
-    }
-
-    private String id;
-
-    @Id
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }

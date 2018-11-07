@@ -38,7 +38,7 @@ public class DynamicController {
 
 
     @RequestMapping(value = "/dynamic/user/{userId}", method = RequestMethod.GET)
-    public RspVo<List<DynamicVo>> getByUserId(@PathVariable("userId") Long userId){
+    public RspVo<List<DynamicVo>> getByUserId(@PathVariable("userId") Long userId) {
 
         List<DynamicVo> dynamicVoList = dynamicService.getByUserId(userId);
         return new RspVo<>(dynamicVoList);

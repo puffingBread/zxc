@@ -23,7 +23,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
  */
 @Configuration
 @EnableResourceServer
-public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+public class ZxcResourceServerConfigurationAdapter extends ResourceServerConfigurerAdapter {
 
     @Autowired
     private ZxcAuthenticationEntryPoint authenticationEntryPoint;

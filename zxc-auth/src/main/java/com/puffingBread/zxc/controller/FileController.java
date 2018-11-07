@@ -1,6 +1,6 @@
 package com.puffingBread.zxc.controller;
 
-import com.puffingBread.zxc.model.RspVo;
+import com.puffingBread.zxc.vo.RspVo;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

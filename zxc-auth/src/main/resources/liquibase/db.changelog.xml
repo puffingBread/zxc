@@ -58,7 +58,7 @@
             <column name="updated_by" type="${int11}">
                 <constraints nullable="false"/>
             </column>
-            <column name="status" type="${enum}" defaultValue="0">
+            <column name="status" type="${string1}" defaultValue="enable">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -79,16 +79,13 @@
 
         <createTable tableName="user_role">
             <column name="user_id" type="${seq}">
-                <constraints primaryKey="true"
-                             primaryKeyName="PK1_user_role"
-                             nullable="false"/>
+                <constraints nullable="false"/>
             </column>
             <column name="role_id" type="${seq}">
-                <constraints primaryKey="true"
-                             primaryKeyName="PK2_user_role"
-                             nullable="false"/>
+                <constraints nullable="false"/>
             </column>
         </createTable>
+        <addUniqueConstraint tableName="user_role" columnNames="user_id, role_id" constraintName="UK1_user_role"/>
     </changeSet>
 
     <changeSet id="201707301455" author="victor" failOnError="true">
@@ -108,7 +105,7 @@
             <column name="age" type="int(3)" remarks="年龄">
                 <constraints nullable="false"/>
             </column>
-            <column name="mobile" type="int(12)" remarks="手机号码">
+            <column name="mobile" type="${string1}" remarks="手机号码">
                 <constraints nullable="false"/>
             </column>
             <column name="qq_number" type="int(15)" remarks="qq号码">
@@ -140,7 +137,7 @@
             <column name="password">62aa793e8bb752c9ae612646a713a435</column>
             <column name="created_by">-1</column>
             <column name="updated_by">-1</column>
-            <column name="status">0</column>
+            <column name="status">enable</column>
         </insert>
 
         <insert tableName="role">
@@ -193,7 +190,7 @@
             <column name="password">974a1c6748b0ffd76f7566a32e43bb05</column>
             <column name="created_by">-1</column>
             <column name="updated_by">-1</column>
-            <column name="status">0</column>
+            <column name="status">enable</column>
         </insert>
         <insert tableName="user_role">
             <column name="role_id">-4</column>
