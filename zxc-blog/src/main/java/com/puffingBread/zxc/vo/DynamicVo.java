@@ -10,82 +10,20 @@ import java.util.Date;
  * Created by Administrator on 2017/8/4.
  */
 public class DynamicVo implements Serializable {
-    private long id;
-    private long userId;
+    private Long id;
+    private Long userId;
     private String nikeName;
     private ContentVo content;
     private Long createdTime;
     private Long updateTime;
-    private int status;
+    private Integer status;
 
-    public long getId() {
-        return id;
-    }
+    private Integer browserCount = 0;
+    private Integer commentCount = 0;
+    private Integer retweetCount = 0;
+    private Integer thumbUpCount = 0;
+    private Integer rewardCount = 0;
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public String getNikeName() {
-        return nikeName;
-    }
-
-    public void setNikeName(String nikeName) {
-        this.nikeName = nikeName;
-    }
-
-    public ContentVo getContent() {
-        return content;
-    }
-
-    public void setContent(ContentVo content) {
-        this.content = content;
-    }
-
-    public Long getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(Long createdTime) {
-        this.createdTime = createdTime;
-    }
-
-    public Long getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Long updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "DynamicVo{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", nikeName='" + nikeName + '\'' +
-                ", content=" + content +
-                ", createdTime=" + createdTime +
-                ", updateTime=" + updateTime +
-                ", status=" + status +
-                '}';
-    }
 
     public static DynamicVo toVo(Dynamic dynamic) {
 
@@ -129,5 +67,101 @@ public class DynamicVo implements Serializable {
         dynamic.setUpdateTime(new Date(vo.getUpdateTime()));
         dynamic.setStatus(vo.getStatus());
         return dynamic;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getNikeName() {
+        return nikeName;
+    }
+
+    public void setNikeName(String nikeName) {
+        this.nikeName = nikeName;
+    }
+
+    public ContentVo getContent() {
+        return content;
+    }
+
+    public void setContent(ContentVo content) {
+        this.content = content;
+    }
+
+    public Long getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Long createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public Long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Long updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getBrowserCount() {
+        return browserCount;
+    }
+
+    public void setBrowserCount(Integer browserCount) {
+        this.browserCount = browserCount;
+    }
+
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    public Integer getRetweetCount() {
+        return retweetCount;
+    }
+
+    public void setRetweetCount(Integer retweetCount) {
+        this.retweetCount = retweetCount;
+    }
+
+    public Integer getThumbUpCount() {
+        return thumbUpCount;
+    }
+
+    public void setThumbUpCount(Integer thumbUpCount) {
+        this.thumbUpCount = thumbUpCount;
+    }
+
+    public Integer getRewardCount() {
+        return rewardCount;
+    }
+
+    public void setRewardCount(Integer rewardCount) {
+        this.rewardCount = rewardCount;
     }
 }

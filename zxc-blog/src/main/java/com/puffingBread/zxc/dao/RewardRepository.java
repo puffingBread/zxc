@@ -12,6 +12,7 @@ import java.util.List;
  */
 public interface RewardRepository extends JpaRepository<Reward, Long> {
 
-    @Query("select r from Reward r where r.dynamicId = :dynamicId")
-    List<Reward> findByDynamicId(Long dynamicId);
+    List<Reward> findByDynamicIdAndStatus(Long dynamicId, Integer status);
+
+    Reward findByIdAndStatus(Long id, Integer status);
 }

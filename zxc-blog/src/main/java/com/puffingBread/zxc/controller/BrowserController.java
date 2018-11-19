@@ -8,14 +8,15 @@ import com.puffingBread.zxc.vo.RspVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/browser")
 public class BrowserController {
 
     @Autowired
     BrowserService browserService;
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/browser", method = RequestMethod.POST)
     public RspVo<BrowserVo> save(@RequestBody BrowserVo browserVo) {
 
         BrowserVo save = null;
@@ -33,7 +34,7 @@ public class BrowserController {
         return new RspVo<>(save);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/browser/{id}", method = RequestMethod.DELETE)
     public RspVo<Object> delete(@PathVariable("id") Long id) {
 
         try {
@@ -44,5 +45,32 @@ public class BrowserController {
         }
 
         return new RspVo<>();
+    }
+
+    @RequestMapping(value = "/browser/dynamic/{dynamicId}", method = RequestMethod.DELETE)
+    public RspVo<Object> deleteByDynamicId(@PathVariable("dynamicId") Long dynamicId) {
+
+        try {
+            browserService.deleteByDynamicId(dynamicId);
+        } catch (ReadMessageException e) {
+            e.printStackTrace();
+            return new RspVo<>(Code.ERROR.code, e.getMessage());
+        }
+
+        return new RspVo<>();
+    }
+
+    @RequestMapping(value = "/browser/dynamic/{dynamicId}", method = RequestMethod.GET)
+    public RspVo<List<BrowserVo>> getByDynamicId(@PathVariable("dynamicId") Long dynamicId) {
+
+        List<BrowserVo> browserVoList;
+        try {
+            browserVoList = browserService.getByDynamicId(dynamicId);
+        } catch (ReadMessageException e) {
+            e.printStackTrace();
+            return new RspVo<>(Code.ERROR.code, e.getMessage());
+        }
+
+        return new RspVo<>(browserVoList);
     }
 }

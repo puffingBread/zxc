@@ -1,17 +1,18 @@
 package com.puffingBread.zxc.service;
 
 import com.puffingBread.zxc.common.exception.ReadMessageException;
-import com.puffingBread.zxc.vo.ThumbUpVo;
+import com.puffingBread.zxc.vo.RewardVo;
 
 import java.util.List;
 
-public interface ThumbUpService {
+public interface RewardService {
 
-    ThumbUpVo save(ThumbUpVo thumbUpVo) throws ReadMessageException;
+    RewardVo save(RewardVo rewardVo) throws ReadMessageException;
 
     void delete(Long id) throws ReadMessageException;
 
     void deleteByDynamicId(Long dynamicId) throws ReadMessageException;
 
-    List<ThumbUpVo> getByDynamicId(Long dynamicId) throws ReadMessageException;
+    List<RewardVo> getByDynamicId(Long dynamicId) throws ReadMessageException;
+
 }
