@@ -12,7 +12,7 @@
         <module>zxc-service-register</module>
         <module>zxc-config</module>
         <module>zxc-blog</module>
-        <!--<module>zxc-config-repo</module>-->
+        <module>zxc-admin</module>
     </modules>
     <packaging>pom</packaging>
 

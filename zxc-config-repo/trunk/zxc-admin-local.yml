@@ -1,0 +1,54 @@
+server:
+  port: 8082
+  context-path: /admin
+  tomcat:
+    max-threads: 0
+    uri-encoding: UTF-8
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+
+multipart:
+  maxFileSize: 100Mb
+  maxRequestSize: 100Mb
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+          strategy: SEMAPHORE
+
+ribbon:
+  eureka:
+    enabled:  true
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+
+logging:
+  level:
+    root: info
+    com:
+      puffingBread: debug
+
+spring:
+  application:
+      name: zxc-admin
+  security:
+    oauth2:
+      resource:
+        userInfoUri: http://localhost:8899/userauth/me
+        preferTokenInfo: false
+      client:
+        accessTokenUri: http://localhost:8899/userauth/oauth/token
+        userAuthorizationUri: http://localhost:8899/userauth/oauth/authorize
+        clientId: client
+        clientSecret: secret
+
+authserver:
+  hostname: localhost
+  port: 8899
+  contextPath: userauth
