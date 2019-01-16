@@ -53,6 +53,7 @@ public class DynamicServiceImpl implements DynamicService {
         Content resContent = contentRepository.save(content);
 
         Dynamic dynamic = DynamicVo.toModel(dynamicVo);
+        dynamic.setContentId(resContent.getId());
         Dynamic resDynamic = dynamicRepository.save(dynamic);
         return DynamicVo.toVo(resDynamic, resContent);
     }
@@ -88,7 +89,7 @@ public class DynamicServiceImpl implements DynamicService {
         }
 
         Content content = contentRepository.findByIdAndStatus(dynamic.getContentId(), 0);
-        if (dynamic == null) {
+        if (content == null) {
             throw new ReadMessageException("该动态已经被删除");
         }
 

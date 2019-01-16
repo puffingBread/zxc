@@ -19,7 +19,7 @@ public class BrowserController {
     @RequestMapping(value = "/browser", method = RequestMethod.POST)
     public RspVo<BrowserVo> save(@RequestBody BrowserVo browserVo) {
 
-        BrowserVo save = null;
+        BrowserVo save;
         try {
             save = browserService.save(browserVo);
         } catch (ReadMessageException e) {

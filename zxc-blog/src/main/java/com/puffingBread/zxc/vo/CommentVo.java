@@ -12,7 +12,6 @@ public class CommentVo {
     private Long userId;
     private Date createdTime;
     private Date updateTime;
-    private Integer status;
     private Long operatorId;
 
     public static CommentVo toVo(Comment comment) {
@@ -27,7 +26,6 @@ public class CommentVo {
         commentVo.setUserId(comment.getUserId());
         commentVo.setCreatedTime(comment.getCreatedTime());
         commentVo.setUpdateTime(comment.getUpdateTime());
-        commentVo.setStatus(comment.getStatus());
         commentVo.setOperatorId(comment.getOperatorId());
 
         return commentVo;
@@ -46,7 +44,7 @@ public class CommentVo {
         comment.setUserId(commentVo.getUserId());
         comment.setCreatedTime(commentVo.getCreatedTime());
         comment.setUpdateTime(commentVo.getUpdateTime());
-        comment.setStatus(commentVo.getStatus());
+        comment.setStatus(0);
 
         return comment;
     }
@@ -97,14 +95,6 @@ public class CommentVo {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public Long getOperatorId() {

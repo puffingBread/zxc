@@ -12,7 +12,6 @@ public class RewardVo {
     private Integer amount;
     private Date createdTime;
     private Date updateTime;
-    private Integer status;
 
     public static RewardVo toVo(Reward reward) {
         if (reward == null) {
@@ -26,7 +25,6 @@ public class RewardVo {
         rewardVo.setAmount(reward.getAmount());
         rewardVo.setCreatedTime(reward.getCreatedTime());
         rewardVo.setUpdateTime(reward.getUpdateTime());
-        rewardVo.setStatus(reward.getStatus());
 
         return rewardVo;
     }
@@ -43,7 +41,7 @@ public class RewardVo {
         reward.setAmount(rewardVo.getAmount());
         reward.setCreatedTime(rewardVo.getCreatedTime());
         reward.setUpdateTime(rewardVo.getUpdateTime());
-        reward.setStatus(rewardVo.getStatus());
+        reward.setStatus(0);
 
         return reward;
     }
@@ -94,13 +92,5 @@ public class RewardVo {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

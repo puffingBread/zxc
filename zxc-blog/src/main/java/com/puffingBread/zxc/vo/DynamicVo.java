@@ -16,7 +16,6 @@ public class DynamicVo implements Serializable {
     private ContentVo content;
     private Long createdTime;
     private Long updateTime;
-    private Integer status;
 
     private Integer browserCount;
     private Integer commentCount;
@@ -33,7 +32,6 @@ public class DynamicVo implements Serializable {
         vo.setNikeName(dynamic.getNikeName());
         vo.setCreatedTime(dynamic.getCreatedTime().getTime());
         vo.setUpdateTime(dynamic.getUpdateTime().getTime());
-        vo.setStatus(dynamic.getStatus());
 
         return vo;
     }
@@ -45,7 +43,6 @@ public class DynamicVo implements Serializable {
         vo.setNikeName(dynamic.getNikeName());
         vo.setCreatedTime(dynamic.getCreatedTime().getTime());
         vo.setUpdateTime(dynamic.getUpdateTime().getTime());
-        vo.setStatus(dynamic.getStatus());
 
         ContentVo contentVo = new ContentVo();
         contentVo.setId(content.getId());
@@ -63,9 +60,11 @@ public class DynamicVo implements Serializable {
         dynamic.setUserId(vo.getUserId());
         dynamic.setNikeName(vo.getNikeName());
         dynamic.setContentId(vo.getContent() == null ? null : vo.getContent().getId());
-        dynamic.setCreatedTime(new Date(vo.getCreatedTime()));
-        dynamic.setUpdateTime(new Date(vo.getUpdateTime()));
-        dynamic.setStatus(vo.getStatus());
+        if (vo.getId() == null) {
+            dynamic.setCreatedTime(new Date());
+        }
+        dynamic.setUpdateTime(new Date());
+        dynamic.setStatus(0);
         return dynamic;
     }
 
@@ -115,14 +114,6 @@ public class DynamicVo implements Serializable {
 
     public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public Integer getBrowserCount() {

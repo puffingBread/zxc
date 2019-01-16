@@ -11,7 +11,6 @@ public class ThumbUpVo {
     private Long userId;
     private Date createdTime;
     private Date updateTime;
-    private Integer status;
 
     public static ThumbUpVo toVo(ThumbUp thumbUp) {
         if (thumbUp == null) {
@@ -24,7 +23,6 @@ public class ThumbUpVo {
         thumbUpVo.setUserId(thumbUp.getUserId());
         thumbUpVo.setCreatedTime(thumbUp.getCreatedTime());
         thumbUpVo.setUpdateTime(thumbUp.getUpdateTime());
-        thumbUpVo.setStatus(thumbUp.getStatus());
         return thumbUpVo;
     }
 
@@ -39,7 +37,7 @@ public class ThumbUpVo {
         thumbUp.setUserId(thumbUpVo.getUserId());
         thumbUp.setCreatedTime(thumbUpVo.getCreatedTime());
         thumbUp.setUpdateTime(thumbUpVo.getUpdateTime());
-        thumbUp.setStatus(thumbUpVo.getStatus());
+        thumbUp.setStatus(0);
 
         return thumbUp;
     }
@@ -82,13 +80,5 @@ public class ThumbUpVo {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

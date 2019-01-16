@@ -25,7 +25,7 @@ public class DynamicController {
     @RequestMapping(value = "/dynamic", method = RequestMethod.POST)
     public RspVo<DynamicVo> create(@RequestBody DynamicVo dynamicVo) {
 
-        DynamicVo vo = null;
+        DynamicVo vo;
         try {
             vo = dynamicService.save(dynamicVo);
         } catch (ReadMessageException e) {
@@ -49,11 +49,18 @@ public class DynamicController {
         return new RspVo<>();
     }
 
-    @RequestMapping(value = "/dynamic", method = RequestMethod.GET)
-    public RspVo<DynamicVo> getDynamicById(Long dynamicId) {
+    @RequestMapping(value = "/dynamic/{dynamicId}", method = RequestMethod.GET)
+    public RspVo<DynamicVo> getDynamicById(@PathVariable Long dynamicId) {
 
+        DynamicVo dynamicVo;
+        try {
+            dynamicVo = dynamicService.getById(dynamicId);
+        } catch (ReadMessageException e) {
+            e.printStackTrace();
+            return new RspVo<>(-1, e.getLocalizedMessage());
+        }
 
-        return new RspVo<>(0, "malefoleng");
+        return new RspVo<>(dynamicVo);
     }
 
     @RequestMapping(value = "/dynamic/user/{userId}", method = RequestMethod.GET)
@@ -62,7 +69,5 @@ public class DynamicController {
         List<DynamicVo> dynamicVoList = dynamicService.getByUserId(userId);
         return new RspVo<>(dynamicVoList);
     }
-
-
 
 }

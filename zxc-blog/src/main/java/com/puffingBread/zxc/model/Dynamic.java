@@ -1,10 +1,6 @@
 package com.puffingBread.zxc.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.sql.Timestamp;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -22,6 +18,13 @@ public class Dynamic {
     private Integer status;
 
     @Id
+    @TableGenerator(name = "PKGenerator",
+            table = "id_holder",
+            pkColumnName = "id_name",
+            valueColumnName = "id_counter",
+            pkColumnValue = "DynamicId",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "PKGenerator")
     @Column(name = "id", nullable = false)
     public Long getId() {
         return id;

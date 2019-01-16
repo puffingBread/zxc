@@ -11,7 +11,6 @@ public class RetweetVo {
     private Long userId;
     private Date createdTime;
     private Date updateTime;
-    private Integer status;
 
     public static RetweetVo toVo(Retweet retweet) {
         if (retweet == null) {
@@ -24,7 +23,6 @@ public class RetweetVo {
         retweetVo.setUserId(retweet.getUserId());
         retweetVo.setCreatedTime(retweet.getCreatedTime());
         retweetVo.setUpdateTime(retweet.getUpdateTime());
-        retweetVo.setStatus(retweet.getStatus());
 
         return retweetVo;
     }
@@ -40,7 +38,7 @@ public class RetweetVo {
         retweet.setUserId(retweetVo.getUserId());
         retweet.setCreatedTime(retweetVo.getCreatedTime());
         retweet.setUpdateTime(retweetVo.getUpdateTime());
-        retweet.setStatus(retweetVo.getStatus());
+        retweet.setStatus(0);
 
         return retweet;
     }
@@ -83,13 +81,5 @@ public class RetweetVo {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

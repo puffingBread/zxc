@@ -13,7 +13,6 @@ public class ContentVo implements Serializable {
     private Integer contentType;
     private String title;
     private String content;
-    private Integer status;
 
     public static Content toModel(ContentVo contentVo) {
         if (contentVo == null) {
@@ -25,7 +24,7 @@ public class ContentVo implements Serializable {
         content.setContentType(contentVo.getContentType());
         content.setTitle(contentVo.getTitle());
         content.setContent(contentVo.getContent());
-        content.setStatus(contentVo.getStatus());
+        content.setStatus(0);
 
         return content;
     }
@@ -40,7 +39,6 @@ public class ContentVo implements Serializable {
         contentVo.setContentType(content.getContentType());
         contentVo.setTitle(content.getTitle());
         contentVo.setContent(content.getContent());
-        contentVo.setStatus(content.getStatus());
 
         return contentVo;
     }
@@ -75,26 +73,6 @@ public class ContentVo implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("ContentVo{");
-        sb.append("id=").append(id);
-        sb.append(", contentType=").append(contentType);
-        sb.append(", title='").append(title).append('\'');
-        sb.append(", content='").append(content).append('\'');
-        sb.append(", status=").append(status);
-        sb.append('}');
-        return sb.toString();
     }
 }
 

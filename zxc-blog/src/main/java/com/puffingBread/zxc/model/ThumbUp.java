@@ -17,6 +17,13 @@ public class ThumbUp {
     private Integer status;
 
     @Id
+    @TableGenerator(name = "PKGenerator",
+            table = "id_holder",
+            pkColumnName = "id_name",
+            valueColumnName = "id_counter",
+            pkColumnValue = "ThumbUpId",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "PKGenerator")
     @Column(name = "id", nullable = false)
     public Long getId() {
         return id;

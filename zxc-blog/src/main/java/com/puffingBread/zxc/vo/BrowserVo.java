@@ -2,12 +2,7 @@ package com.puffingBread.zxc.vo;
 
 import com.puffingBread.zxc.model.Browser;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 public class BrowserVo {
 
@@ -16,7 +11,6 @@ public class BrowserVo {
     private Long userId;
     private Date createdTime;
     private Date updateTime;
-    private Integer status;
 
     public static BrowserVo toVo(Browser browser) {
         if (browser == null) {
@@ -29,7 +23,6 @@ public class BrowserVo {
         browserVo.setUserId(browser.getUserId());
         browserVo.setCreatedTime(browser.getCreatedTime());
         browserVo.setUpdateTime(browser.getUpdateTime());
-        browserVo.setStatus(browser.getStatus());
 
         return browserVo;
     }
@@ -45,7 +38,7 @@ public class BrowserVo {
         browser.setUserId(browserVo.getUserId());
         browser.setCreatedTime(browserVo.getCreatedTime());
         browser.setUpdateTime(browserVo.getUpdateTime());
-        browser.setStatus(browserVo.getStatus());
+        browser.setStatus(0);
 
         return browser;
     }
@@ -88,13 +81,5 @@ public class BrowserVo {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }
