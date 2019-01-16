@@ -15,8 +15,8 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/regist", method = RequestMethod.POST)
-    public RspVo<UserVo> regist(@RequestBody UserVo user){
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public RspVo<UserVo> register(@RequestBody UserVo user){
 
         return userService.save(user);
     }

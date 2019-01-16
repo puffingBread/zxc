@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private UserRepository userService;
 
-    static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
+    static Map<Long, User> users = Collections.synchronizedMap(new HashMap<>());
 
     @RequestMapping(value="/all", method=RequestMethod.GET)
     public List<User> getUserList() {

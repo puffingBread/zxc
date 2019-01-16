@@ -1,10 +1,6 @@
 package com.puffingBread.zxc.controller;
 
 import com.puffingBread.zxc.common.utils.ExcelUtil;
-import com.puffingBread.zxc.dao.UserInfoRepository;
-import com.puffingBread.zxc.model.User;
-import com.puffingBread.zxc.model.UserInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,16 +18,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("excel")
 public class ExcelController {
-    @Autowired
-    private UserInfoRepository userRepository;
 
     @RequestMapping("/download")
     public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String fileName = "excel文件";
         //填充projects数据
-        List<UserInfo> userInfoList = userRepository.findAll();
-        List<User> users = new ArrayList<>(0);
-        List<Map<String, Object>> list = createExcelRecord(users);
+        List<Map<String, Object>> list = new ArrayList<>();
         String columnNames[] = {"ID", "名字", "年龄"};//列名
         String keys[] = {"id", "name", "age"};        //map中的key
         ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -69,22 +60,4 @@ public class ExcelController {
         }
         return null;
     }
-
-    private List<Map<String, Object>> createExcelRecord(List<User> projects) {
-        List<Map<String, Object>> listmap = new ArrayList<Map<String, Object>>();
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("sheetName", "sheet1");
-        listmap.add(map);
-//        User project=null;
-//        for (int j = 0; j < projects.size(); j++) {
-//            project=projects.get(j);
-//            Map<String, Object> mapValue = new HashMap<String, Object>();
-//            mapValue.put("id", project.getUserId());
-//            mapValue.put("name", project.getName());
-//            mapValue.put("age", project.getAge());
-//            listmap.add(mapValue);
-//        }
-        return listmap;
-    }
-
 }

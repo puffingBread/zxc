@@ -49,7 +49,7 @@ public class ZxcWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapte
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/webjars/**", "/images/**", "/oauth/uncache_approvals", "/oauth/cache_approvals", "/login/client", "/login/worker", "/loginPage", "/logout/confirm");
+        web.ignoring().antMatchers("/webjars/**", "/images/**", "/oauth/uncache_approvals", "/oauth/cache_approvals", "/loginPage");
     }
 
     @Override

@@ -6,15 +6,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 
-/**
- * Created by Administrator on 2017/7/5.
- */
+
 @RestController
 public class FileController {
-//    @Autowired
-//    private FileService fileService;
 
-    private static String filePath = "F:/ZFileTest/";
+    private static final String filePath = "F:/ZFileTest/";
 
     @RequestMapping(value = "/operateData/upload", method = RequestMethod.POST, headers = "content-type=multipart/form-data")
     @ResponseBody

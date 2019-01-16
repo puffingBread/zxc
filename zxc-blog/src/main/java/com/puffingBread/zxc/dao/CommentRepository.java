@@ -15,6 +15,8 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> findByDynamicIdAndStatus(Long dynamicId, Integer status);
 
+    Integer countByDynamicIdAndStatus(Long dynamic, Integer status);
+
     Comment findByIdAndStatus(Long id, Integer status);
 
     Page<Comment> findByDynamicIdAndStatus(Long dynamicId, Integer status, Pageable pageable);

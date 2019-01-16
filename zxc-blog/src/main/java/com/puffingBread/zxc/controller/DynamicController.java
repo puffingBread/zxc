@@ -37,16 +37,23 @@ public class DynamicController {
     }
 
     @RequestMapping(value = "/dynamic/{dynamicId}", method = RequestMethod.DELETE)
-    public RspVo<Object> delete(@PathVariable("dynamicId") Long dynamicId) {
+    public RspVo<Object> delete(@PathVariable("dynamicId") Long dynamicId, Long userId) {
 
         try {
-            dynamicService.delete(dynamicId);
+            dynamicService.delete(dynamicId, userId);
         } catch (ReadMessageException e) {
             e.printStackTrace();
             return new RspVo<>(-1, e.getLocalizedMessage());
         }
 
         return new RspVo<>();
+    }
+
+    @RequestMapping(value = "/dynamic", method = RequestMethod.GET)
+    public RspVo<DynamicVo> getDynamicById(Long dynamicId) {
+
+
+        return new RspVo<>(0, "malefoleng");
     }
 
     @RequestMapping(value = "/dynamic/user/{userId}", method = RequestMethod.GET)

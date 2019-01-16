@@ -1,4 +1,3 @@
-/*
 package com.puffingBread.zxc.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +27,12 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.sql.DataSource;
 
-*/
 /**
  * The Class OAuth2Config defines the authorization server that would
  * authenticate the user and define the client that seeks authorization on the
  * resource owner's behalf.
- *//*
+ */
+
 
 @Configuration
 @EnableAuthorizationServer
@@ -48,14 +47,12 @@ public class ZxcOAuthConfiguration extends AuthorizationServerConfigurerAdapter 
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    */
-/**
+    /**
      * The OAuth2 tokens are defined in the datasource defined in the
      * <code>auth-server.yml</code> file stored in the Spring Cloud config
      * github jpa.
      *
-     * @return
-     *//*
+     */
 
     @Bean
     public JdbcTokenStore tokenStore() {
@@ -69,32 +66,39 @@ public class ZxcOAuthConfiguration extends AuthorizationServerConfigurerAdapter 
     }
 
     @Bean
-    protected ClientDetailsService clientDetailsService () {
+    protected ClientDetailsService clientDetailsService() {
         return new JdbcClientDetailsService(dataSource);
     }
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security)
             throws Exception {
-        // security.passwordEncoder(passwordEncoder);
-        // security.allowFormAuthenticationForClients();
+//         security.passwordEncoder(passwordEncoder);
+         security.allowFormAuthenticationForClients();
 
     }
 
 
-    */
-/**
+    /**
      * We set our authorization storage feature specifying that we would use the
-     * JDBC store for token and authorization code storage.<br>
-     * <br>
      * <p>
-     * We also attach the {@link AuthenticationManager} so that password grants
-     * can be processed.
-     *//*
+     *     JDBC store for token and authorization code storage .<br> <br>
+     * <p>
+     * <p>
+     * We also attach the
+     * <p>
+     * {@link AuthenticationManager}
+     * <p>
+     * so that password grants
+     * <p>
+     * can be
+     * processed .
+     */
+
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints)
-            throws Exception {
+
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
 
 
         endpoints.authorizationCodeServices(authorizationCodeServices())
@@ -103,42 +107,58 @@ public class ZxcOAuthConfiguration extends AuthorizationServerConfigurerAdapter 
                 .approvalStoreDisabled();
     }
 
-    */
-/**
-     * Setup the client application which attempts to get access to user's
-     * account after user permission.
-     *//*
+    /**
+     * Setup the
+     * client application
+     * which attempts
+     * to get
+     * access to
+     * user's
+     * <p>
+     * account after
+     * user permission.
+     */
+
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients)
             throws Exception {
 
-//        clients.jdbc(dataSource)
-//                // .passwordEncoder(passwordEncoder)
-//                .withClient("client")
-//                .authorizedGrantTypes("authorization_code", "client_credentials",
-//                        "refresh_token", "password", "implicit")
-//                .authorities("ROLE_CLIENT")
-//                .scopes("read", "write")
-//                .secret("secret")
-//                .resourceIds("apis")
-//                .redirectUris("http://localhost:8082/login")
-//                .autoApprove(true)
-//                .accessTokenValiditySeconds(3000);
+        clients.jdbc(dataSource)
+                // .passwordEncoder(passwordEncoder)
+                .withClient("client")
+                .authorizedGrantTypes("authorization_code", "client_credentials",
+                        "refresh_token", "password", "implicit")
+                .authorities("ROLE_CLIENT")
+                .scopes("read", "write")
+                .secret("secret")
+                .resourceIds("apis")
+                .redirectUris("http://localhost:8082/login")
+                .autoApprove(true)
+                .accessTokenValiditySeconds(3000);
         clients.withClientDetails(this.clientDetailsService());
 
     }
 
-    */
-/**
-     * Configure the {@link AuthenticationManagerBuilder} with initial
-     * configuration to setup users.
+    /**
+     * Configure the
+     * <p>
+     * {
      *
      * @author anilallewar
-     *//*
+     * @link AuthenticationManagerBuilder
+     * }
+     * <p>
+     * with initial
+     * <p>
+     * configuration to
+     * setup users.
+     */
+
 
     @Configuration
     @Order(Ordered.LOWEST_PRECEDENCE - 20)
+
     protected static class AuthenticationManagerConfiguration extends
             GlobalAuthenticationConfigurerAdapter {
         private Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
@@ -152,10 +172,12 @@ public class ZxcOAuthConfiguration extends AuthorizationServerConfigurerAdapter 
         private UserDetailsService userDetailsService;
 
 
-        */
-/**
-         * Setup 2 users with different roles
-         *//*
+        /**
+         * Setup 2
+         * users with
+         * different roles
+         */
+
 
         @Override
         public void init(AuthenticationManagerBuilder auth) throws Exception {
@@ -182,4 +204,4 @@ public class ZxcOAuthConfiguration extends AuthorizationServerConfigurerAdapter 
         }
     }
 
-}*/
+}

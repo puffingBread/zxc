@@ -35,8 +35,7 @@ public class BlogApplication {
 
     @Bean
     public SessionFactory sessionFactory(HibernateEntityManagerFactory hemf) {
-        SessionFactory sessionFactory = hemf.getSessionFactory();
-        return sessionFactory;
+        return hemf.getSessionFactory();
     }
 
     @Bean

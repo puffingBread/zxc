@@ -3,8 +3,6 @@ package com.puffingBread.zxc.service;
 import com.puffingBread.zxc.vo.RspVo;
 import com.puffingBread.zxc.vo.UserVo;
 
-import java.util.List;
-
 /**
  * Created by Victor on 2017/6/15.
  */
@@ -12,8 +10,6 @@ public interface UserService {
 
 
     RspVo<UserVo> getOne(Long id);
-
-    RspVo<List<UserVo>> findAll();
 
     RspVo<UserVo> save(UserVo userVo);
 

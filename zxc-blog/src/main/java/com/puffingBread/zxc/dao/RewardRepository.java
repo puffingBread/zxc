@@ -2,7 +2,6 @@ package com.puffingBread.zxc.dao;
 
 import com.puffingBread.zxc.model.Reward;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -13,6 +12,8 @@ import java.util.List;
 public interface RewardRepository extends JpaRepository<Reward, Long> {
 
     List<Reward> findByDynamicIdAndStatus(Long dynamicId, Integer status);
+
+    Integer countByDynamicIdAndStatus(Long dynamicId, Integer status);
 
     Reward findByIdAndStatus(Long id, Integer status);
 }

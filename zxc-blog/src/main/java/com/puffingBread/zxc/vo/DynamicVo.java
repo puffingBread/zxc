@@ -18,11 +18,11 @@ public class DynamicVo implements Serializable {
     private Long updateTime;
     private Integer status;
 
-    private Integer browserCount = 0;
-    private Integer commentCount = 0;
-    private Integer retweetCount = 0;
-    private Integer thumbUpCount = 0;
-    private Integer rewardCount = 0;
+    private Integer browserCount;
+    private Integer commentCount;
+    private Integer retweetCount;
+    private Integer thumbUpCount;
+    private Integer rewardCount;
 
 
     public static DynamicVo toVo(Dynamic dynamic) {

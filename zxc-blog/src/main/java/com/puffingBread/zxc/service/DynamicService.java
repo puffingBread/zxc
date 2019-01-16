@@ -12,7 +12,9 @@ public interface DynamicService {
 
     DynamicVo save(DynamicVo dynamicVo) throws ReadMessageException;
 
-    boolean delete(Long dynamicId) throws ReadMessageException;
+    void delete(Long dynamicId, Long userId) throws ReadMessageException;
+
+    DynamicVo getById(Long dynamicId) throws ReadMessageException;
 
     List<DynamicVo> getByUserId(Long userId);
 

@@ -3,7 +3,6 @@ package com.puffingBread.zxc.dao;
 import com.puffingBread.zxc.model.Dynamic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -13,6 +12,8 @@ import java.util.List;
  * 动态
  */
 public interface DynamicRepository extends JpaRepository<Dynamic, Long> {
+
+    Dynamic findByIdAndStatus(Long id, Integer status);
 
     List<Dynamic> findByUserIdAndStatus(Long userId, Integer status);
 
