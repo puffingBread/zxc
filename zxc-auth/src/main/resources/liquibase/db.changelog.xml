@@ -165,8 +165,8 @@
     <changeSet id="201609181108" author="kevin" context="test">
         <insert tableName="user">
             <column name="id">10001</column>
-            <column name="username">13333333333</column>
-            <column name="password">9d9bb86843eadeec00829d0cb34bd37a</column>
+            <column name="username">victor</column>
+            <column name="password">c5f00217498ad7b70cbeaec07ee2a267</column>
             <column name="created_by">-1</column>
             <column name="updated_by">-1</column>
         </insert>
@@ -174,13 +174,6 @@
             <column name="role_id">-4</column>
             <column name="user_id">10001</column>
         </insert>
-    </changeSet>
-
-    <changeSet id="201609182214" author="kevin">
-        <update tableName="user">
-            <column name="password">21da7a3a16496730ca279e4dfc2630d7</column>
-            <where>id = 10001</where>
-        </update>
     </changeSet>
 
     <changeSet id="201609261108" author="kevin" context="test">

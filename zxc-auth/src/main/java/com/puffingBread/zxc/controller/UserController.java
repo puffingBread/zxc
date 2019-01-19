@@ -1,76 +1,53 @@
 package com.puffingBread.zxc.controller;
 
-import com.puffingBread.zxc.dao.UserRepository;
 import com.puffingBread.zxc.model.User;
+import com.puffingBread.zxc.service.UserService;
+import com.puffingBread.zxc.vo.RspVo;
+import com.puffingBread.zxc.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  *
  */
-@Controller
-@RequestMapping(value="/users")     // 通过这里配置使下面的映射都在/users下，可去除
+@RestController
 public class UserController {
     @Autowired
-    private UserRepository userService;
+    private UserService userService;
 
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<>());
 
-    @RequestMapping(value="/all", method=RequestMethod.GET)
-    public List<User> getUserList() {
-        // 处理"/users/"的GET请求，用来获取用户列表
-        // 还可以通过@RequestParam从页面中传递参数来进行查询条件或者翻页信息的传递
-//        List<User> r = new ArrayList<User>(users.values());
+    @RequestMapping(value = "/user/registry", method = RequestMethod.POST)
+    public RspVo<UserVo> registry(@RequestBody UserVo user) {
 
-        return userService.findAll();
+        return userService.save(user);
     }
 
-    @RequestMapping(value="/save", method=RequestMethod.POST)
-    public Map<String, Object> postUser(@ModelAttribute User user) {
-        // 处理"/users/"的POST请求，用来创建User
-        // 除了@ModelAttribute绑定参数之外，还可以通过@RequestParam从页面中传递参数
-        // users.put(user.getUserId(), user);
-        Map<String , Object> result = new HashMap<>();
-        result.put("code", "200");
-        result.put("data" , userService.save(user));
-        return result;
-    }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public User getUser(@PathVariable Long id) {
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    public RspVo<UserVo> getUser(@PathVariable Long id) {
         // 处理"/users/{id}"的GET请求，用来获取url中id值的User信息
         // url中的id可通过@PathVariable绑定到函数的参数中
-        // return users.get(id);
+        // 还可以通过@RequestParam从页面中传递参数来进行查询条件或者翻页信息的传递
 
-        return userService.findById(id);
+        return userService.getOne(id);
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public String delete(@PathVariable Long id){
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
+    public RspVo<Object> delete(@PathVariable Long id) {
+
         userService.delete(id);
-        return "success";
+        return new RspVo<>();
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-    public String putUser(@PathVariable Long id, @ModelAttribute User user) {
-        // 处理"/users/{id}"的PUT请求，用来更新User信息
-        User u = users.get(id);
+    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    public RspVo<UserVo> updateUser(UserVo userVo) {
 
-        users.put(id, u);
-        return "success";
-    }
-
-    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-    public String deleteUser(@PathVariable Long id) {
-        // 处理"/users/{id}"的DELETE请求，用来删除User
-        users.remove(id);
-        return "success";
+        return userService.save(userVo);
     }
 
 }

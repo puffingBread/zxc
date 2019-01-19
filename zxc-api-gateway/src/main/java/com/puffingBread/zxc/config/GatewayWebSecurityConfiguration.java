@@ -24,8 +24,7 @@ public class GatewayWebSecurityConfiguration extends WebSecurityConfigurerAdapte
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().mvcMatchers(
                 "/userauth/oauth/**",
-                "/userauth/hello",
-                "/userauth/helloR",
+                "/userauth/login",
                 "/userauth/loginPage",
                 "/userauth/logout/confirm"
         );//ssc-auth
@@ -41,13 +40,6 @@ public class GatewayWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                 "/erp/device",
                 "/erp/**/*.html"
         );//ssc-erp
-
-
-//        web.ignoring().mvcMatchers("/**");//ssc-web
-
-//        web.ignoring().mvcMatchers("/**");//ssc-daq
-
-//        web.ignoring().mvcMatchers("/**");//ssc-market
 
         String[] activeProfiles = environment.getActiveProfiles();
         if(!Arrays.toString(activeProfiles).contains("product")) {

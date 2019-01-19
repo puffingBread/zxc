@@ -14,9 +14,6 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-/**
- * Created by kevin on 16-11-4.
- */
 @Service
 public class OAuthAgentServiceImpl implements OAuthAgentService {
 
@@ -33,38 +30,24 @@ public class OAuthAgentServiceImpl implements OAuthAgentService {
     private String oauthClientSecret;
 
     @Override
-    public AccessToken getAcessToken(String username, String password) {
+    public AccessToken getAccessToken(String username, String password) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setErrorHandler(new MyErrorHandler());
         String uri = accessTokenUri + "?grant_type=password&username=" + username + "&password=" + password;
-        ResponseEntity<AccessToken> resp = null;
+        ResponseEntity<AccessToken> resp;
         try {
             resp = restTemplate.exchange
                     (uri, HttpMethod.POST, new HttpEntity<String>(createHeaders(oauthClientId, oauthClientSecret)), AccessToken.class);
         } catch (HttpClientErrorException e) {
+            e.printStackTrace();
             return null;
         }
 
         return resp.getBody();
     }
 
-/*    @Override
-    public AccessToken getAcessToken(String openId) {
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.setErrorHandler(new MyErrorHandler());
-        String uri = accessTokenUri + "?grant_type=password&username=" + openId + "&password=" + this.loginSecret + "&client_id=" + this.oauthClientId;
-        ResponseEntity<AccessToken> resp = null;
-        try {
-            resp = restTemplate.exchange
-                    (uri, HttpMethod.POST, new HttpEntity<String>(createHeaders(oauthClientId, oauthClientSecret)), AccessToken.class);
-        } catch (HttpClientErrorException e) {
-            return null;
-        }
-        return resp.getBody();
-    }*/
-
     @Override
-    public AccessToken getAcessTokenByClientId() {
+    public AccessToken getAccessTokenByClientId() {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setErrorHandler(new MyErrorHandler());
         String uri = accessTokenUri + "?grant_type=client_credentials";
@@ -99,7 +82,23 @@ public class OAuthAgentServiceImpl implements OAuthAgentService {
 
         @Override
         public void handleError(ClientHttpResponse clientHttpResponse) throws IOException {
-            throw new HttpClientErrorException(clientHttpResponse.getStatusCode());
+            HttpStatus statusCode = clientHttpResponse.getStatusCode();
+            throw new HttpClientErrorException(statusCode);
         }
+    }
+
+    public AccessToken refreshAccessToken(String refreshToken) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setErrorHandler(new MyErrorHandler());
+        String uri = accessTokenUri + "?grant_type=refresh_token&refresh_token=" + refreshToken;
+        ResponseEntity<AccessToken> resp = null;
+        try {
+            resp = restTemplate.exchange
+                    (uri, HttpMethod.POST, new HttpEntity<String>(createHeaders(oauthClientId, oauthClientSecret)), AccessToken.class);
+        } catch (HttpClientErrorException e) {
+            return null;
+        }
+
+        return resp.getBody();
     }
 }

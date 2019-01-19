@@ -8,6 +8,11 @@ eureka:
   instance:
       prefer-ip-address: true
 
+authserver:
+  hostname: localhost
+  port: 8899
+  contextPath: userauth
+
 spring:
   application:
       name: zxc-auth

@@ -1,9 +1,6 @@
 package com.puffingBread.zxc.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -19,6 +16,13 @@ public class User {
     private String status;
 
     @Id
+    @TableGenerator(name = "PKGenerator",
+            table = "id_holder",
+            pkColumnName = "id_name",
+            valueColumnName = "id_counter",
+            pkColumnValue = "UserId",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "PKGenerator")
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -107,6 +111,7 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
+
 
     @Override
     public boolean equals(Object o) {
