@@ -35,7 +35,7 @@ public class ZxcResourceServerConfigurationAdapter extends ResourceServerConfigu
                 .antMatchers("/me").access("#oauth2.hasScope('read')")
                 .antMatchers("/user/**").authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(this.authenticationEntryPoint)
-                .and().formLogin().loginProcessingUrl("/login").failureForwardUrl("/loginPage?failed=true")
+                .and().formLogin().loginProcessingUrl("/login").failureForwardUrl("/login?failed=true")
                 .successHandler(this.savedRequestAwareAuthenticationSuccessHandler());
     }
 

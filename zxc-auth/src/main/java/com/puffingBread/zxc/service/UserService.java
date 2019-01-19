@@ -1,6 +1,6 @@
 package com.puffingBread.zxc.service;
 
-import com.puffingBread.zxc.vo.RspVo;
+import com.puffingBread.zxc.common.exception.ReadMessageException;
 import com.puffingBread.zxc.vo.UserVo;
 
 /**
@@ -8,10 +8,11 @@ import com.puffingBread.zxc.vo.UserVo;
  */
 public interface UserService {
 
+    UserVo create(UserVo userVo);
 
-    RspVo<UserVo> getOne(Long id);
+    UserVo update(UserVo userVo) throws ReadMessageException;
 
-    RspVo<UserVo> save(UserVo userVo);
+    UserVo getOne(Long id) throws ReadMessageException;
 
     void delete(Long id);
 }

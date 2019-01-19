@@ -49,13 +49,14 @@ public class ZxcWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapte
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/webjars/**", "/oauth/uncache_approvals", "/oauth/cache_approvals", "/login", "/loginPage", "/logout/confirm");
+        web.ignoring().antMatchers("/webjars/**", "/oauth/uncache_approvals", "/oauth/cache_approvals", "/login", "/logout/confirm");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/oauth/authorize").authenticated()
-                .and().exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/loginPage"));
+                .antMatchers("/oauth/**").authenticated()
+                .and().exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"));
     }
 }

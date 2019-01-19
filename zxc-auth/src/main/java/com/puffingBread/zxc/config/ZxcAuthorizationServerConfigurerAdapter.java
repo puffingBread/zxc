@@ -34,16 +34,6 @@ public class ZxcAuthorizationServerConfigurerAdapter extends AuthorizationServer
     @Autowired
     private DataSource dataSource;
 
-//    @Bean
-//    public JdbcTokenStore tokenStore() {
-//        return new JdbcTokenStore(dataSource);
-//    }
-//
-//    @Bean
-//    protected AuthorizationCodeServices authorizationCodeServices() {
-//        return new JdbcAuthorizationCodeServices(dataSource);
-//    }
-
     @Bean
     protected ClientDetailsService clientDetailsService () {
         return new JdbcClientDetailsService(dataSource);
