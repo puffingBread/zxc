@@ -1,13 +1,7 @@
 package com.puffingBread.zxc.common.controller;
 
-import java.io.PrintWriter;
-import java.util.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.puffingBread.zxc.common.json.Json;
-import com.puffingBread.zxc.common.utils.CollectionUtil;
+import com.puffingBread.zxc.common.utils.BlankUtil;
 import com.puffingBread.zxc.common.utils.DateTime;
 import com.puffingBread.zxc.common.utils.HttpUtil;
 import com.puffingBread.zxc.common.utils.Pair;
@@ -16,6 +10,14 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -378,7 +380,7 @@ public class CenterController {
     private <T> Pair<List<T>, Integer> listPage(List<T> listPage, HttpServletRequest request) {
         Pair<Integer, Integer> pair = this.page2(request);
 
-        if (CollectionUtil.isEmpty(listPage)) {
+        if (BlankUtil.isBlank(listPage)) {
             List<T> list = new ArrayList<T>();
             return Pair.makePair(list, 0);
         }

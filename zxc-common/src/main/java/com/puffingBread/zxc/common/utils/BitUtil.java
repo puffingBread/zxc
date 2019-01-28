@@ -3,7 +3,6 @@ package com.puffingBread.zxc.common.utils;
 
 /**
  * 
- * @author cliang
  * @date 2015年5月15日 下午6:00:28
  */
 public class BitUtil {

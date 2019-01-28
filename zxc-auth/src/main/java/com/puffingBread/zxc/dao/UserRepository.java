@@ -5,14 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
-
 /**
  * Created by Victor on 2017/6/15.
  */
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findById(Long id);
+    User findByIdAndStatus(Long id, String status);
 
     User save(User user);
 

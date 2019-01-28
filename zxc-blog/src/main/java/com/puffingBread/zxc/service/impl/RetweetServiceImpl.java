@@ -1,7 +1,7 @@
 package com.puffingBread.zxc.service.impl;
 
 import com.puffingBread.zxc.common.exception.ReadMessageException;
-import com.puffingBread.zxc.common.utils.CollectionUtil;
+import com.puffingBread.zxc.common.utils.BlankUtil;
 import com.puffingBread.zxc.dao.RetweetRepository;
 import com.puffingBread.zxc.model.Retweet;
 import com.puffingBread.zxc.service.RetweetService;
@@ -53,7 +53,7 @@ public class RetweetServiceImpl implements RetweetService {
         }
 
         List<Retweet> retweetList = retweetRepository.findByDynamicIdAndStatus(dynamicId, 0);
-        if (CollectionUtil.isEmpty(retweetList)) {
+        if (BlankUtil.isBlank(retweetList)) {
             return;
         }
 
@@ -70,7 +70,7 @@ public class RetweetServiceImpl implements RetweetService {
         }
 
         List<Retweet> retweetList = retweetRepository.findByDynamicIdAndStatus(dynamicId, 0);
-        if (CollectionUtil.isEmpty(retweetList)) {
+        if (BlankUtil.isBlank(retweetList)) {
             return new ArrayList<>(0);
         }
 

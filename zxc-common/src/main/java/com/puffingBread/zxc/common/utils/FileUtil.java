@@ -1,30 +1,17 @@
 package com.puffingBread.zxc.common.utils;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import org.apache.commons.io.FileUtils;
+import org.springframework.core.io.ClassPathResource;
+
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import org.apache.commons.io.FileUtils;
-import org.springframework.core.io.ClassPathResource;
 /**
  * 文件操作
- * @author aiquan.li
  * @since 2015年10月15日 下午1:49:28
  */
 public class FileUtil {

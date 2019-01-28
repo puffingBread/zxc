@@ -1,7 +1,7 @@
 package com.puffingBread.zxc.service.impl;
 
 import com.puffingBread.zxc.common.exception.ReadMessageException;
-import com.puffingBread.zxc.common.utils.CollectionUtil;
+import com.puffingBread.zxc.common.utils.BlankUtil;
 import com.puffingBread.zxc.dao.ThumbUpRepository;
 import com.puffingBread.zxc.model.ThumbUp;
 import com.puffingBread.zxc.service.ThumbUpService;
@@ -53,7 +53,7 @@ public class ThumbUpServiceImpl implements ThumbUpService {
         }
 
         List<ThumbUp> thumbUpList = thumbUpRepository.findByDynamicIdAndStatus(dynamicId, 0);
-        if (CollectionUtil.isEmpty(thumbUpList)) {
+        if (BlankUtil.isBlank(thumbUpList)) {
             return;
         }
 
@@ -70,7 +70,7 @@ public class ThumbUpServiceImpl implements ThumbUpService {
         }
 
         List<ThumbUp> thumbUpList = thumbUpRepository.findByDynamicIdAndStatus(dynamicId, 0);
-        if (CollectionUtil.isEmpty(thumbUpList)) {
+        if (BlankUtil.isBlank(thumbUpList)) {
             return new ArrayList<>(0);
         }
 

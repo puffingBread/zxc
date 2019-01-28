@@ -5,6 +5,12 @@ import java.util.TreeSet;
 
 public class SortUtil {
 
+    /**
+     * top k 算法，获取前k个值
+     * @param array 源数组
+     * @param n     获取靠前的个数
+     * @return      前n个值的集合
+     */
     private static TreeSet<Integer> topk(int[] array, int n) {
 
         TreeSet<Integer> set = new TreeSet<Integer>();

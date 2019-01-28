@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
         Long userId = userVo.getId();
 
-        User user = userRepository.findById(userId);
+        User user = userRepository.findByIdAndStatus(userId, "enable");
         if (user == null) {
             throw new ReadMessageException("userVo can not be null!");
         }
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
             throw new ReadMessageException("id can not be null!");
         }
 
-        User user = userRepository.findById(id);
+        User user = userRepository.findByIdAndStatus(id, "enable");
         return UserVo.toVo(user);
     }
 

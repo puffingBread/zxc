@@ -1,7 +1,7 @@
 package com.puffingBread.zxc.service.impl;
 
 import com.puffingBread.zxc.common.exception.ReadMessageException;
-import com.puffingBread.zxc.common.utils.CollectionUtil;
+import com.puffingBread.zxc.common.utils.BlankUtil;
 import com.puffingBread.zxc.dao.BrowserRepository;
 import com.puffingBread.zxc.model.Browser;
 import com.puffingBread.zxc.service.BrowserService;
@@ -53,7 +53,7 @@ public class BrowserServiceImpl implements BrowserService {
         }
 
         List<Browser> browserList = browserRepository.findByDynamicIdAndStatus(dynamicId, 0);
-        if (CollectionUtil.isEmpty(browserList)) {
+        if (BlankUtil.isBlank(browserList)) {
             return;
         }
 
@@ -70,15 +70,13 @@ public class BrowserServiceImpl implements BrowserService {
         }
 
         List<Browser> browserList = browserRepository.findByDynamicIdAndStatus(dynamicId, 0);
-        if (CollectionUtil.isEmpty(browserList)) {
+        if (BlankUtil.isBlank(browserList)) {
             return new ArrayList<>(0);
         }
 
-        List<BrowserVo> browserVoList = browserList
+        return browserList
                 .stream()
                 .map(BrowserVo::toVo)
                 .collect(Collectors.toList());
-
-        return browserVoList;
     }
 }
