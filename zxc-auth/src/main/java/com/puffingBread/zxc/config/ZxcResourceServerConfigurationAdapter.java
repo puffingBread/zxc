@@ -35,7 +35,7 @@ public class ZxcResourceServerConfigurationAdapter extends ResourceServerConfigu
                 .antMatchers("/me").access("#oauth2.hasScope('read')")
                 .antMatchers("/user/**").authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(this.authenticationEntryPoint)
-                .and().formLogin().loginProcessingUrl("/login").failureForwardUrl("/login?failed=true")
+                .and().formLogin().loginProcessingUrl("/login").failureForwardUrl("/login")
                 .successHandler(this.savedRequestAwareAuthenticationSuccessHandler());
     }
 
@@ -56,5 +56,4 @@ public class ZxcResourceServerConfigurationAdapter extends ResourceServerConfigu
     OAuth2RestTemplate oAuth2RestTemplate(OAuth2ProtectedResourceDetails resource, OAuth2ClientContext context) {
         return new OAuth2RestTemplate(resource, context);
     }
-
 }

@@ -24,7 +24,7 @@ public class ZxcAuthenticationEntryPoint implements AuthenticationEntryPoint {
             response.setHeader("Content-Type", "application/json;charset=UTF-8");
             response.getWriter().print("{'status': 400, 'title': '您尚未登录！不允许访问'}");
         } else {
-           new  LoginUrlAuthenticationEntryPoint("/login").commence(request, response, authException);
+           new  LoginUrlAuthenticationEntryPoint("/loginPage").commence(request, response, authException);
         }
 
     }

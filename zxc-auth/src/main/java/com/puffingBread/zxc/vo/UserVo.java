@@ -20,6 +20,10 @@ public class UserVo implements Serializable {
     private Long updatedBy;
 
     public static UserVo toVo(User user) {
+        if (user == null) {
+            return null;
+        }
+
         UserVo vo = new UserVo();
         vo.setId(user.getId());
         vo.setUsername(user.getUsername());

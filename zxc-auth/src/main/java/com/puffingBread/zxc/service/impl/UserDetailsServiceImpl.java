@@ -42,7 +42,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         List<UserRole> userRoleList = userRoleRepository.findByUserId(user.getId());
 
-        List<Long> roleIds = userRoleList.stream().map(UserRole::getRoleId).collect(Collectors.toList());
+        List<Long> roleIds = userRoleList
+                .stream()
+                .map(UserRole::getRoleId)
+                .collect(Collectors.toList());
+
         List<Role> roleList = roleRepository.findByIdIn(roleIds);
         for (Role role : roleList) {
             authorityList.add(new SimpleGrantedAuthority("ROLE_" + role.getRole()));

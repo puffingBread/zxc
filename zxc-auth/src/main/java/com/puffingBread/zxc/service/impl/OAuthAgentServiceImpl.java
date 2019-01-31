@@ -68,6 +68,7 @@ public class OAuthAgentServiceImpl implements OAuthAgentService {
                 byte[] encodedAuth = Base64.encodeBase64(
                         auth.getBytes(Charset.forName("US-ASCII")));
                 String authHeader = "Basic " + new String(encodedAuth);
+                System.out.println("==============>>> header: " + authHeader);
                 set("Authorization", authHeader);
             }
         };
@@ -91,11 +92,11 @@ public class OAuthAgentServiceImpl implements OAuthAgentService {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setErrorHandler(new MyErrorHandler());
         String uri = accessTokenUri + "?grant_type=refresh_token&refresh_token=" + refreshToken;
-        ResponseEntity<AccessToken> resp = null;
+        ResponseEntity<AccessToken> resp;
         try {
-            resp = restTemplate.exchange
-                    (uri, HttpMethod.POST, new HttpEntity<String>(createHeaders(oauthClientId, oauthClientSecret)), AccessToken.class);
+            resp = restTemplate.postForEntity(uri, new HttpEntity<String>(createHeaders(oauthClientId, oauthClientSecret)), AccessToken.class);
         } catch (HttpClientErrorException e) {
+            e.printStackTrace();
             return null;
         }
 

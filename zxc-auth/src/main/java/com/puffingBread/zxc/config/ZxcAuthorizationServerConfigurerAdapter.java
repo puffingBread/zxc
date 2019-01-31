@@ -35,16 +35,31 @@ public class ZxcAuthorizationServerConfigurerAdapter extends AuthorizationServer
     private DataSource dataSource;
 
     @Bean
+    public JdbcTokenStore tokenStore() {
+        return new JdbcTokenStore(dataSource);
+    }
+
+    @Bean
+    protected AuthorizationCodeServices authorizationCodeServices() {
+        return new JdbcAuthorizationCodeServices(dataSource);
+    }
+
+    @Bean
     protected ClientDetailsService clientDetailsService () {
         return new JdbcClientDetailsService(dataSource);
     }
 
     @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+
+    }
+
+    @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 
-        endpoints.authorizationCodeServices(new JdbcAuthorizationCodeServices(dataSource))
+        endpoints.authorizationCodeServices(this.authorizationCodeServices())
                 .authenticationManager(authenticationManager)
-                .tokenStore(new JdbcTokenStore(dataSource))
+                .tokenStore(this.tokenStore())
                 .approvalStoreDisabled();
     }
 
@@ -52,5 +67,4 @@ public class ZxcAuthorizationServerConfigurerAdapter extends AuthorizationServer
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.withClientDetails(this.clientDetailsService());
     }
-
 }

@@ -97,7 +97,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `UK1_user` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='帐号';
 
-INSERT INTO `user` VALUES ('-10001', 'victor', 'c5f00217498ad7b70cbeaec07ee2a267', '13762370937', '2019-01-18 17:47:52', '2019-01-18 17:47:52', '-1', '-1', 'enable');
+INSERT INTO `user` VALUES ('10001', 'victor', 'c5f00217498ad7b70cbeaec07ee2a267', '13762370937', '2019-01-18 17:47:52', '2019-01-18 17:47:52', '-1', '-1', 'enable');
 INSERT INTO `user` VALUES ('-1', 'admin', '62aa793e8bb752c9ae612646a713a435', '13888888888', '2019-01-18 17:47:52', '2019-01-18 17:47:52', '-1', '-1', 'enable');
 
 
