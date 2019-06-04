@@ -3,7 +3,6 @@ package com.puffingBread.zxc.controller;
 import com.puffingBread.zxc.common.controller.Code;
 import com.puffingBread.zxc.common.exception.ReadMessageException;
 import com.puffingBread.zxc.service.RewardService;
-import com.puffingBread.zxc.vo.DynamicVo;
 import com.puffingBread.zxc.vo.RewardVo;
 import com.puffingBread.zxc.vo.RspVo;
 import org.springframework.beans.factory.annotation.Autowired;

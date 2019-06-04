@@ -4,6 +4,7 @@ import com.puffingBread.zxc.common.exception.ReadMessageException;
 import com.puffingBread.zxc.common.utils.BlankUtil;
 import com.puffingBread.zxc.dao.BrowserRepository;
 import com.puffingBread.zxc.model.Browser;
+import com.puffingBread.zxc.model.Goods;
 import com.puffingBread.zxc.service.BrowserService;
 import com.puffingBread.zxc.vo.BrowserVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class BrowserServiceImpl implements BrowserService {
         if (browserVo == null) {
             throw new ReadMessageException("browserVo can not be null!");
         }
+
+        Goods goods = new Goods("饼干", 2.00D);
+
+        goods.setName("");
+        goods.setPrice(2.00);
 
         Browser browser = BrowserVo.toModel(browserVo);
         Browser resBrowser = browserRepository.save(browser);
@@ -70,6 +76,7 @@ public class BrowserServiceImpl implements BrowserService {
         }
 
         List<Browser> browserList = browserRepository.findByDynamicIdAndStatus(dynamicId, 0);
+
         if (BlankUtil.isBlank(browserList)) {
             return new ArrayList<>(0);
         }

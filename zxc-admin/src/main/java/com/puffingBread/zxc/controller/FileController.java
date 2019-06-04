@@ -10,7 +10,7 @@ import java.io.*;
 @RestController
 public class FileController {
 
-    private static final String filePath = "F:/ZFileTest/";
+    private static final String filePath = "E:/data/fileTest";
 
     @RequestMapping(value = "/operateData/upload", method = RequestMethod.POST, headers = "content-type=multipart/form-data")
     @ResponseBody
