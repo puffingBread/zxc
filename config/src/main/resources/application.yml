@@ -1,0 +1,25 @@
+server:
+  port: 8888
+
+# git管理配置
+spring:
+  application:
+    name: zxc-config
+  cloud:
+    config:
+      server:
+          git:
+            uri: https://github.com/puffingBread/zxc
+            searchPaths: /config-repository/trunk
+            force-pull: true
+            default-label: master
+            username:
+            password:
+
+# 开启本地配置
+#  profiles:
+#    active: native
+
+
+
+
