@@ -1,5 +1,5 @@
-import com.bread.zxc.auth.server.AuthApplication;
-import com.bread.zxc.auth.service.OAuthAgentService;
+import com.bread.enlighten.zxc.restful.blog.auth.server.AuthApplication;
+import com.bread.enlighten.zxc.restful.blog.auth.service.OAuthAgentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -6,9 +6,9 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://localhost:3306/zxc_user</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <mapping class="com.bread.zxc.auth.model.UserRole"/>
-        <mapping class="com.bread.zxc.auth.model.User"/>
-        <mapping class="com.bread.zxc.auth.model.Role"/>
-        <mapping class="com.bread.zxc.auth.model.UserInfo"/>
+        <mapping class="com.bread.enlighten.zxc.restful.blog.auth.model.UserRole"/>
+        <mapping class="com.bread.enlighten.zxc.restful.blog.auth.model.User"/>
+        <mapping class="com.bread.enlighten.zxc.restful.blog.auth.model.Role"/>
+        <mapping class="com.bread.enlighten.zxc.restful.blog.auth.model.UserInfo"/>
     </session-factory>
 </hibernate-configuration>

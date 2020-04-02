@@ -11,14 +11,14 @@
     <description>Demo Gateway project for Spring Boot</description>
 
     <parent>
-        <groupId>com.mob.invest</groupId>
-        <artifactId>invest</artifactId>
+        <groupId>com.bread.enlighten</groupId>
+        <artifactId>zxc</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <dependencies>
         <dependency>
-            <groupId>com.mob.invest</groupId>
+            <groupId>com.bread.enlighten</groupId>
             <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
