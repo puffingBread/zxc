@@ -1,4 +1,4 @@
-package com.bread.enlighten.zxc.common.utils;
+package com.bread.enlighten.zxc.common.util.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

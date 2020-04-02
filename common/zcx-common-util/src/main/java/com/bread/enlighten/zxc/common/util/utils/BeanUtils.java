@@ -1,4 +1,4 @@
-package com.bread.enlighten.zxc.common.utils;
+package com.bread.enlighten.zxc.common.util.utils;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.BeanWrapper;
