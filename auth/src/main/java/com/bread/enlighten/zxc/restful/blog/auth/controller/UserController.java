@@ -1,11 +1,9 @@
 package com.bread.enlighten.zxc.restful.blog.auth.controller;
 
 import com.bread.enlighten.zxc.restful.blog.auth.model.User;
+import com.bread.enlighten.zxc.restful.blog.auth.service.UserService;
 import com.bread.enlighten.zxc.restful.blog.auth.vo.RspVo;
 import com.bread.enlighten.zxc.restful.blog.auth.vo.UserVo;
-import com.bread.zxc.common.exception.ReadMessageException;
-import com.bread.enlighten.zxc.restful.blog.auth.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -17,10 +15,14 @@ import java.util.Map;
  */
 @RestController
 public class UserController {
-    @Autowired
-    private UserService userService;
+
+    private final UserService userService;
 
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<>());
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/user/registry", method = RequestMethod.POST)
     public RspVo<UserVo> registry(@RequestBody UserVo userVo) {
@@ -31,7 +33,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public RspVo<UserVo> getUser(@PathVariable Long id) throws ReadMessageException {
+    public RspVo<UserVo> getUser(@PathVariable Long id) {
         // 处理"/users/{id}"的GET请求，用来获取url中id值的User信息
         // url中的id可通过@PathVariable绑定到函数的参数中
         // 还可以通过@RequestParam从页面中传递参数来进行查询条件或者翻页信息的传递
@@ -48,7 +50,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
-    public RspVo<UserVo> updateUser(UserVo userVo) throws ReadMessageException {
+    public RspVo<UserVo> updateUser(UserVo userVo) {
 
         UserVo vo = userService.update(userVo);
         return new RspVo<>(vo);

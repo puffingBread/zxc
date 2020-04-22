@@ -2,7 +2,6 @@ package com.bread.enlighten.zxc.restful.blog.auth.controller;
 
 import com.bread.enlighten.zxc.restful.blog.auth.vo.OauthTokenVo;
 import com.bread.enlighten.zxc.restful.blog.auth.vo.RspVo;
-import com.bread.zxc.common.controller.Code;
 import com.bread.enlighten.zxc.restful.blog.auth.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

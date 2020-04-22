@@ -19,7 +19,6 @@
         <module>app</module>
         <module>repository</module>
         <module>offline</module>
-        <module>zxc-common-dao</module>
     </modules>
 
     <dependencyManagement>

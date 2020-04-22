@@ -138,7 +138,7 @@ public class BlankUtil {
     }
 
     public static void main(String[] args) {
-        List<String> sList = new ArrayList<String>();
+        List<String> sList = new ArrayList<>();
         boolean ret = BlankUtil.isBlank(sList);
         System.out.println("ret:" + ret);
     }
