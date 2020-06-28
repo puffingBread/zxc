@@ -8,14 +8,19 @@ eureka:
   instance:
       prefer-ip-address: true
 
+authserver:
+  hostname: localhost
+  port: 8899
+  contextPath: userauth
+
 spring:
   application:
       name: zxc-auth
   datasource:
+      driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://localhost:3306/zxc_user?characterEncoding=UTF-8&useSSL=false
       username: root
       password:
-      driver-class-name: com.mysql.jdbc.Driver
       initialize: false
       test-on-borrow: false
       test-on-return: false
@@ -29,8 +34,7 @@ spring:
       properties:
         hibernate:
           current_session_context_class: org.springframework.orm.hibernate4.SpringSessionContext
-  thymeleaf:
-      content-type: application/xhtml+xml
+
   security:
       user:
         password: password
@@ -47,7 +51,6 @@ spring:
           userAuthorizationUri: http://localhost:8899/userauth/oauth/authorize
           clientId: client
           clientSecret: secret
-      loginSecret:  puffing007
 
 liquibase:
    enabled: true

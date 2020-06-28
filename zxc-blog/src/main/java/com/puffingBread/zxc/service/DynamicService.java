@@ -1,6 +1,6 @@
 package com.puffingBread.zxc.service;
 
-import com.puffingBread.zxc.model.Dynamic;
+import com.puffingBread.zxc.common.exception.ReadMessageException;
 import com.puffingBread.zxc.vo.DynamicVo;
 
 import java.util.List;
@@ -10,7 +10,13 @@ import java.util.List;
  */
 public interface DynamicService {
 
-    List<DynamicVo> getByUserId(long userId);
+    DynamicVo save(DynamicVo dynamicVo) throws ReadMessageException;
 
-    List<DynamicVo> getByTime(long startTime, long endTime);
+    void delete(Long dynamicId, Long userId) throws ReadMessageException;
+
+    DynamicVo getById(Long dynamicId) throws ReadMessageException;
+
+    List<DynamicVo> getByUserId(Long userId);
+
+    List<DynamicVo> getByTime(Long startTime, Long endTime);
 }

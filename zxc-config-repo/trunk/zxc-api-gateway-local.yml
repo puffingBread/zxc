@@ -1,0 +1,68 @@
+
+server:
+  port: 9999
+
+multipart:
+  maxFileSize: 100Mb
+  maxRequestSize: 100Mb
+
+spring:
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 100Mb
+      max-request-size: 100Mb
+
+  security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:8899/userauth/me
+      preferTokenInfo: false
+    client:
+      accessTokenUri: http://localhost:8899/userauth/oauth/token
+      userAuthorizationUri: http://localhost:8899/userauth/oauth/authorize
+      clientId: client
+      clientSecret: secret
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+ribbon:
+  eureka:
+    enabled:  true
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+
+logging:
+  level:
+    org:
+      springframework: info
+    com:
+      smartconns: debug
+
+eureka:
+  instance:
+    client:
+      registerWithEureka: false
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone:  http://localhost:1111/eureka
+
+zuul:
+  routes:
+    auth:
+      sensitiveHeaders: "*"
+      serviceId:  ZXC-AUTH
+      path: "/userauth/**"
+      stripPrefix:  false
+    blog:
+      sensitiveHeaders: "*"
+      serviceId:  ZXC-BLOG
+      path: "/blog/**"
+      stripPrefix:  false

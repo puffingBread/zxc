@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.text.NumberFormat;
 
 /**
- * @author cliang
  * 有关钱的分--元转换操作相关
  */
 public class MoneyUtil {

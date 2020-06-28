@@ -1,30 +1,18 @@
 package com.puffingBread.zxc.common.utils;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.core.io.ClassPathResource;
+
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import org.apache.commons.io.FileUtils;
-import org.springframework.core.io.ClassPathResource;
 /**
  * 文件操作
- * @author aiquan.li
  * @since 2015年10月15日 下午1:49:28
  */
 public class FileUtil {
@@ -38,7 +26,7 @@ public class FileUtil {
 		URL serverUrl = new URL(url);
 		HttpURLConnection urlcon = (HttpURLConnection) serverUrl.openConnection();
 	    String message = urlcon.getHeaderField(0);//文件存在‘HTTP/1.1 200 OK’ 文件不存在 ‘HTTP/1.1 404 Not Found’
-	    if (!BlankUtil.isBlank(message) && message.startsWith("HTTP/1.1 404")) {
+	    if (!StringUtils.isBlank(message) && message.startsWith("HTTP/1.1 404")) {
 	    	System.out.println("serverUrl aacConvert this downUrl is not found! downUrl:"+url);
 			return false;
 	    }
@@ -149,7 +137,7 @@ public class FileUtil {
 		try
 		{
 			fis = new FileInputStream(fileName);
-			if(BlankUtil.isBlank(charset))
+			if(StringUtils.isBlank(charset))
 			{
 				charset = "UTF-8";
 			}
@@ -1139,16 +1127,16 @@ public class FileUtil {
 		String dir = "D:/";
 		FileUtil.downloadFromUrl(url, dir);
 		
-		Thread.currentThread().sleep(3000);
+		Thread.sleep(3000);
 		String localFilePath = "D:/Fj1b4jn62V9B_DbUK-iNNuvSuiWW.jpg";
 		String destFilePath = "D:/test.jpg";
 		File downFile = new File(localFilePath);
 		File destFile = new File(destFilePath);
 		
 		FileUtil.deleteFile("D:", "test.jpg");
-		Thread.currentThread().sleep(3000);
+		Thread.sleep(3000);
 		downFile.renameTo(destFile);
-		Thread.currentThread().sleep(3000);
+		Thread.sleep(3000);
 		
 		/////往文本文件里追加行数据
 		String txtDir = "d:/ccc222";
@@ -1159,7 +1147,6 @@ public class FileUtil {
 		FileUtil.appendContent(fileName, "美白", null);
 		FileUtil.appendContent(fileName, "美白2", "###");
 		FileUtil.appendContent(fileName, "玻尿酸", "@@");
-		FileUtil.appendContent(fileName, "麒云", "\n");
 		FileUtil.appendContent(fileName, "玻尿酸丰唇", "\n");
 		FileUtil.appendContent(fileName, "2288",",");
 		System.out.println("写txt文件完成~");

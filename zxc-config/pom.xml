@@ -85,7 +85,7 @@
 
     <properties>
         <start.class>
-            com.puffingBread.zxc.server.ConfigApplication
+            com.puffingBread.zxc.ConfigApplication
         </start.class>
     </properties>
 

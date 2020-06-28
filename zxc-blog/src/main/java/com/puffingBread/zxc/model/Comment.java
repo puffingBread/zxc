@@ -1,31 +1,47 @@
 package com.puffingBread.zxc.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.sql.Timestamp;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2017/8/3.
  */
 @Entity
 public class Comment {
-    private long dynamicId;
+
+    private Long id;
+    private Long dynamicId;
     private String content;
-    private long userId;
-    private Timestamp createdTime;
-    private Timestamp updateTime;
-    private int status;
+    private Long userId;
+    private Date createdTime;
+    private Date updateTime;
+    private Integer status;
     private Long operatorId;
+
+    @Id
+    @TableGenerator(name = "PKGenerator",
+            table = "id_holder",
+            pkColumnName = "id_name",
+            valueColumnName = "id_counter",
+            pkColumnValue = "CommentId",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "PKGenerator")
+    @Column(name = "id", nullable = false)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Basic
     @Column(name = "dynamic_id", nullable = false)
-    public long getDynamicId() {
+    public Long getDynamicId() {
         return dynamicId;
     }
 
-    public void setDynamicId(long dynamicId) {
+    public void setDynamicId(Long dynamicId) {
         this.dynamicId = dynamicId;
     }
 
@@ -41,41 +57,41 @@ public class Comment {
 
     @Basic
     @Column(name = "user_id", nullable = false)
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
     @Basic
     @Column(name = "created_time", nullable = false)
-    public Timestamp getCreatedTime() {
+    public Date getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(Timestamp createdTime) {
+    public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
     @Basic
     @Column(name = "update_time", nullable = false)
-    public Timestamp getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
     @Basic
     @Column(name = "status", nullable = false)
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -96,37 +112,27 @@ public class Comment {
 
         Comment comment = (Comment) o;
 
-        if (dynamicId != comment.dynamicId) return false;
-        if (userId != comment.userId) return false;
-        if (status != comment.status) return false;
-        if (content != null ? !content.equals(comment.content) : comment.content != null) return false;
-        if (createdTime != null ? !createdTime.equals(comment.createdTime) : comment.createdTime != null) return false;
-        if (updateTime != null ? !updateTime.equals(comment.updateTime) : comment.updateTime != null) return false;
-        if (operatorId != null ? !operatorId.equals(comment.operatorId) : comment.operatorId != null) return false;
-
-        return true;
+        if (!dynamicId.equals(comment.dynamicId)) return false;
+        if (!content.equals(comment.content)) return false;
+        if (!userId.equals(comment.userId)) return false;
+        if (!createdTime.equals(comment.createdTime)) return false;
+        if (!updateTime.equals(comment.updateTime)) return false;
+        if (!status.equals(comment.status)) return false;
+        if (!operatorId.equals(comment.operatorId)) return false;
+        return id.equals(comment.id);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (dynamicId ^ (dynamicId >>> 32));
-        result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (int) (userId ^ (userId >>> 32));
-        result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
-        result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
-        result = 31 * result + status;
-        result = 31 * result + (operatorId != null ? operatorId.hashCode() : 0);
+        int result = dynamicId.hashCode();
+        result = 31 * result + content.hashCode();
+        result = 31 * result + userId.hashCode();
+        result = 31 * result + createdTime.hashCode();
+        result = 31 * result + updateTime.hashCode();
+        result = 31 * result + status.hashCode();
+        result = 31 * result + operatorId.hashCode();
+        result = 31 * result + id.hashCode();
         return result;
     }
 
-    private String id;
-
-    @Id
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }

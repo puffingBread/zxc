@@ -1,10 +1,11 @@
 package com.puffingBread.zxc.filter;
 
-import com.netflix.zuul.ZuulFilter;
-import com.netflix.zuul.context.RequestContext;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.tomcat.util.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
 
 /**
  * Created by Administrator on 2017/8/5.
@@ -18,32 +19,37 @@ import org.apache.tomcat.util.codec.binary.Base64;
     run：过滤器的具体逻辑。在该函数中，我们可以实现自定义的过滤逻辑，来确定是否要拦截当前的请求，不对其进行后续的路由，或是在请求路由返回结果之后，对处理结果做一些加工等。.
 
  */
-public class UserAuthFilter extends ZuulFilter {
+public class UserAuthFilter implements GlobalFilter {
 
-    private Log logger = LogFactory.getLog(UserAuthFilter.class);
+    private Logger logger = LoggerFactory.getLogger(UserAuthFilter.class);
 
-    public String filterType() {
-        return "pre";
-    }
+//    public String filterType() {
+//        return "pre";
+//    }
+//
+//    public int filterOrder() {
+//        return 1;
+//    }
+//
+//    public boolean shouldFilter() {
+//        String path = RequestContext.getCurrentContext().getRequest().getRequestURI();
+//        return path.startsWith("/auth/oauth/token");
+//    }
+//
+//    public Object run() {
+//        logger.debug("executing userauth filter add client/client secret to Http Header 'Authorization'");
+//        String clientCredentials = "client:secret";
+//
+//        Base64 base64 = new Base64();
+//        String encodedCredentials = base64.encodeToString(clientCredentials.getBytes());
+//
+//        RequestContext ctx = RequestContext.getCurrentContext();
+//        ctx.addZuulRequestHeader("Authorization", "Basic " + encodedCredentials);
+//        return null;
+//    }
 
-    public int filterOrder() {
-        return 1;
-    }
-
-    public boolean shouldFilter() {
-        String path = RequestContext.getCurrentContext().getRequest().getRequestURI();
-        return path.startsWith("/auth/oauth/token");
-    }
-
-    public Object run() {
-        logger.debug("executing userauth filter add client/client secret to Http Header 'Authorization'");
-        String clientCredentials = "client:secret";
-
-        Base64 base64 = new Base64();
-        String encodedCredentials = base64.encodeToString(clientCredentials.getBytes());
-
-        RequestContext ctx = RequestContext.getCurrentContext();
-        ctx.addZuulRequestHeader("Authorization", "Basic " + encodedCredentials);
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         return null;
     }
 }

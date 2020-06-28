@@ -2,5 +2,10 @@ spring:
   application:
     name: zxc-api-gateway
   cloud:
-    config:
-      uri: http://localhost:8888
+#    config:
+#      uri: http://localhost:8888
+    # 注册及配置中心
+    nacos:
+      discovery:
+        # 注册中心地址
+        server-addr: 127.0.0.1:8848

@@ -1,38 +1,42 @@
 package com.puffingBread.zxc.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Administrator on 2017/8/4.
  */
 @Entity
 public class Content {
-    private long dynamicId;
-    private int contentType;
+    private Long id;
+    private Integer contentType;
     private String title;
     private String content;
-    private long id;
+    private Integer status;
 
-    @Basic
-    @Column(name = "dynamic_id", nullable = false)
-    public long getDynamicId() {
-        return dynamicId;
+    @Id
+    @TableGenerator(name = "PKGenerator",
+            table = "id_holder",
+            pkColumnName = "id_name",
+            valueColumnName = "id_counter",
+            pkColumnValue = "ContentId",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "PKGenerator")
+    @Column(name = "id", nullable = false)
+    public Long getId() {
+        return id;
     }
 
-    public void setDynamicId(long dynamicId) {
-        this.dynamicId = dynamicId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Basic
     @Column(name = "content_type", nullable = false)
-    public int getContentType() {
+    public Integer getContentType() {
         return contentType;
     }
 
-    public void setContentType(int contentType) {
+    public void setContentType(Integer contentType) {
         this.contentType = contentType;
     }
 
@@ -56,39 +60,13 @@ public class Content {
         this.content = content;
     }
 
-    @Id
-    @Column(name = "id", nullable = false)
-    public long getId() {
-        return id;
+    @Basic
+    @Column(name = "status", nullable = true)
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Content content1 = (Content) o;
-
-        if (dynamicId != content1.dynamicId) return false;
-        if (contentType != content1.contentType) return false;
-        if (id != content1.id) return false;
-        if (title != null ? !title.equals(content1.title) : content1.title != null) return false;
-        if (content != null ? !content.equals(content1.content) : content1.content != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (dynamicId ^ (dynamicId >>> 32));
-        result = 31 * result + contentType;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (int) (id ^ (id >>> 32));
-        return result;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

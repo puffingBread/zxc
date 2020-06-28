@@ -1,16 +1,10 @@
 package com.puffingBread.zxc.common.utils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import javax.servlet.http.HttpServletRequest;
-
-/**
- * 
- * @author cliang
- *
- */
 public class HttpUtil {
 	/**
 	 * 获取输入流

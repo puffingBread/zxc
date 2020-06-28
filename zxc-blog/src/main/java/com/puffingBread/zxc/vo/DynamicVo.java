@@ -10,27 +10,77 @@ import java.util.Date;
  * Created by Administrator on 2017/8/4.
  */
 public class DynamicVo implements Serializable {
-    private long id;
-    private long userId;
+    private Long id;
+    private Long userId;
     private String nikeName;
     private ContentVo content;
     private Long createdTime;
     private Long updateTime;
-    private int status;
 
-    public long getId() {
+    private Integer browserCount;
+    private Integer commentCount;
+    private Integer retweetCount;
+    private Integer thumbUpCount;
+    private Integer rewardCount;
+
+
+    public static DynamicVo toVo(Dynamic dynamic) {
+
+        DynamicVo vo = new DynamicVo();
+        vo.setId(dynamic.getId());
+        vo.setUserId(dynamic.getUserId());
+        vo.setNikeName(dynamic.getNikeName());
+        vo.setCreatedTime(dynamic.getCreatedTime().getTime());
+        vo.setUpdateTime(dynamic.getUpdateTime().getTime());
+
+        return vo;
+    }
+
+    public static DynamicVo toVo(Dynamic dynamic, Content content){
+        DynamicVo vo = new DynamicVo();
+        vo.setId(dynamic.getId());
+        vo.setUserId(dynamic.getUserId());
+        vo.setNikeName(dynamic.getNikeName());
+        vo.setCreatedTime(dynamic.getCreatedTime().getTime());
+        vo.setUpdateTime(dynamic.getUpdateTime().getTime());
+
+        ContentVo contentVo = new ContentVo();
+        contentVo.setId(content.getId());
+        contentVo.setTitle(content.getTitle());
+        contentVo.setContentType(content.getContentType());
+        contentVo.setContent(content.getContent());
+        vo.setContent(contentVo);
+
+        return vo;
+    }
+
+    public static Dynamic toModel(DynamicVo vo){
+        Dynamic dynamic = new Dynamic();
+        dynamic.setId(vo.getId());
+        dynamic.setUserId(vo.getUserId());
+        dynamic.setNikeName(vo.getNikeName());
+        dynamic.setContentId(vo.getContent() == null ? null : vo.getContent().getId());
+        if (vo.getId() == null) {
+            dynamic.setCreatedTime(new Date());
+        }
+        dynamic.setUpdateTime(new Date());
+        dynamic.setStatus(0);
+        return dynamic;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -66,55 +116,43 @@ public class DynamicVo implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public int getStatus() {
-        return status;
+    public Integer getBrowserCount() {
+        return browserCount;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setBrowserCount(Integer browserCount) {
+        this.browserCount = browserCount;
     }
 
-    @Override
-    public String toString() {
-        return "DynamicVo{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", nikeName='" + nikeName + '\'' +
-                ", content=" + content +
-                ", createdTime=" + createdTime +
-                ", updateTime=" + updateTime +
-                ", status=" + status +
-                '}';
+    public Integer getCommentCount() {
+        return commentCount;
     }
 
-    public static DynamicVo toVo(Dynamic dynamic, Content content){
-        DynamicVo vo = new DynamicVo();
-        vo.setId(dynamic.getId());
-        vo.setUserId(dynamic.getUserId());
-        vo.setNikeName(dynamic.getNikeName());
-        vo.setCreatedTime(dynamic.getCreatedTime().getTime());
-        vo.setUpdateTime(dynamic.getUpdateTime().getTime());
-        vo.setStatus(dynamic.getStatus());
-
-        ContentVo contentVo = new ContentVo();
-        contentVo.setId(content.getId());
-        contentVo.setTitle(content.getTitle());
-        contentVo.setContentType(content.getContentType());
-        contentVo.setContent(content.getContent());
-        vo.setContent(contentVo);
-
-        return vo;
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
     }
 
-    public static Dynamic toModel(DynamicVo vo){
-        Dynamic dynamic = new Dynamic();
-        dynamic.setId(vo.getId());
-        dynamic.setUserId(vo.getUserId());
-        dynamic.setNikeName(vo.getNikeName());
-        dynamic.setContentId(vo.getContent() == null ? null : vo.getContent().getId());
-        dynamic.setCreatedTime(new Date(vo.getCreatedTime()));
-        dynamic.setUpdateTime(new Date(vo.getUpdateTime()));
-        dynamic.setStatus(vo.getStatus());
-        return dynamic;
+    public Integer getRetweetCount() {
+        return retweetCount;
+    }
+
+    public void setRetweetCount(Integer retweetCount) {
+        this.retweetCount = retweetCount;
+    }
+
+    public Integer getThumbUpCount() {
+        return thumbUpCount;
+    }
+
+    public void setThumbUpCount(Integer thumbUpCount) {
+        this.thumbUpCount = thumbUpCount;
+    }
+
+    public Integer getRewardCount() {
+        return rewardCount;
+    }
+
+    public void setRewardCount(Integer rewardCount) {
+        this.rewardCount = rewardCount;
     }
 }

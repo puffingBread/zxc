@@ -4,3 +4,16 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/zxc_auth?characterEncoding=UTF-8&useSSL=false
+      username: root
+      password: root
+      initialize: false
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      max-wait-millis: 30000
+      validation-query: SELECT 1
+      time-between-eviction-runs-millis: 20000
+      min-evictable-idle-time-millis: 28700

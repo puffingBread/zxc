@@ -1,22 +1,18 @@
 package com.puffingBread.zxc.service;
 
-import com.puffingBread.zxc.model.RspVo;
-import com.puffingBread.zxc.model.User;
+import com.puffingBread.zxc.common.exception.ReadMessageException;
 import com.puffingBread.zxc.vo.UserVo;
-
-import java.util.List;
 
 /**
  * Created by Victor on 2017/6/15.
  */
 public interface UserService {
 
+    UserVo create(UserVo userVo);
 
-    RspVo<UserVo> getOne(Long id);
+    UserVo update(UserVo userVo) throws ReadMessageException;
 
-    RspVo<List<UserVo>> findAll();
-
-    RspVo<UserVo> save(UserVo userVo);
+    UserVo getOne(Long id) throws ReadMessageException;
 
     void delete(Long id);
 }

@@ -82,5 +82,24 @@ CREATE TABLE `oauth_refresh_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` bigint(20) NOT NULL,
+  `username` varchar(64) NOT NULL COMMENT '用户名',
+  `password` varchar(64) NOT NULL COMMENT '密码',
+  `mobile_phone_num` varchar(64) DEFAULT NULL,
+  `created_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` int(11) NOT NULL,
+  `updated_by` int(11) NOT NULL,
+  `status` varchar(64) NOT NULL DEFAULT 'enable',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK1_user` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='帐号';
+
+INSERT INTO `user` VALUES ('10001', 'victor', 'c5f00217498ad7b70cbeaec07ee2a267', '13762370937', '2019-01-18 17:47:52', '2019-01-18 17:47:52', '-1', '-1', 'enable');
+INSERT INTO `user` VALUES ('-1', 'admin', '62aa793e8bb752c9ae612646a713a435', '13888888888', '2019-01-18 17:47:52', '2019-01-18 17:47:52', '-1', '-1', 'enable');
+
+
 -- delete from oauth_client_details;
 INSERT INTO `oauth_client_details` VALUES ('client','apis','secret','read,write','authorization_code,client_credentials,refresh_token,password,implicit',NULL,'ROLE_CLIENT',3000,NULL,'{}','read,write');

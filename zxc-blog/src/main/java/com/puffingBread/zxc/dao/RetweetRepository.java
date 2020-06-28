@@ -12,7 +12,9 @@ import java.util.List;
  */
 public interface RetweetRepository extends JpaRepository<Retweet, Long> {
 
-    @Query("select r from Retweet r where r.dynamicId = :dynamicId")
-    List<Retweet> findByDynamicId(Long dynamicId);
+    List<Retweet> findByDynamicIdAndStatus(Long dynamicId, Integer status);
 
+    Retweet findByIdAndStatus(Long id, Integer status);
+
+    Integer countByDynamicIdAndStatus(Long dynamicId, Integer status);
 }

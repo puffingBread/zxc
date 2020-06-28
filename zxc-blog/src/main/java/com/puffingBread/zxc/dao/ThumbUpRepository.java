@@ -2,7 +2,6 @@ package com.puffingBread.zxc.dao;
 
 import com.puffingBread.zxc.model.ThumbUp;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -12,6 +11,9 @@ import java.util.List;
  */
 public interface ThumbUpRepository extends JpaRepository<ThumbUp, Long> {
 
-    @Query("select d from ThumbUp d where d.dynamicId = :dynamicId")
-    List<ThumbUp> findByDynamicId(Long dynamicId);
+    ThumbUp findByIdAndStatus(Long id, Integer status);
+
+    List<ThumbUp> findByDynamicIdAndStatus(Long dynamicId, Integer status);
+
+    Integer countByDynamicIdAndStatus(Long dynamicId, Integer status);
 }

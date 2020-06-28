@@ -3,32 +3,69 @@ package com.puffingBread.zxc.vo;
 import com.puffingBread.zxc.model.User;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2017/8/2.
  */
 public class UserVo implements Serializable {
 
-    private Long userId;
-    private String userName;
+    private Long id;
+    private String username;
     private String password;
-    private Integer status;
+    private String mobilePhoneNum;
+    private Date createdTime;
+    private Date updatedTime;
+    private Long createdBy;
+    private Long updatedBy;
 
-    public Long getUserId() {
-        return userId;
+    public static UserVo toVo(User user) {
+        if (user == null) {
+            return null;
+        }
+
+        UserVo vo = new UserVo();
+        vo.setId(user.getId());
+        vo.setUsername(user.getUsername());
+        vo.setPassword(user.getPassword());
+        vo.setMobilePhoneNum(user.getMobilePhoneNum());
+        vo.setCreatedTime(user.getCreatedTime());
+        vo.setUpdatedTime(user.getUpdatedTime());
+        vo.setCreatedBy(user.getCreatedBy());
+        vo.setUpdatedBy(user.getUpdatedBy());
+        return vo;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public static User toModel(UserVo vo) {
+        User user = new User();
+        user.setId(vo.getId());
+        user.setUsername(vo.getUsername());
+        user.setPassword(vo.getPassword());
+        user.setMobilePhoneNum(vo.getMobilePhoneNum());
+        if (vo.getId() == null) {
+            user.setCreatedTime(new Date());
+            user.setCreatedBy(vo.getCreatedBy());
+        }
+        user.setUpdatedTime(new Date());
+        user.setUpdatedBy(vo.getUpdatedBy());
+        user.setStatus("enable");
+        return user;
     }
 
-    public String getUserName() {
-        return userName;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -39,31 +76,43 @@ public class UserVo implements Serializable {
         this.password = password;
     }
 
-    public Integer getStatus() {
-        return status;
+    public String getMobilePhoneNum() {
+        return mobilePhoneNum;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setMobilePhoneNum(String mobilePhoneNum) {
+        this.mobilePhoneNum = mobilePhoneNum;
     }
 
-    public static UserVo toVo(User user){
-        UserVo vo = new UserVo();
-        vo.setUserId(user.getUserId());
-        vo.setUserName(user.getUserName());
-        vo.setPassword(user.getPassword());
-        vo.setStatus(user.getStatus());
-        return vo;
+    public Date getCreatedTime() {
+        return createdTime;
     }
 
-    public static User toModel(UserVo vo){
-        User user = new User();
-        if (vo.getUserId() != null){
-            user.setUserId(vo.getUserId());
-        }
-        user.setUserName(vo.getUserName());
-        user.setPassword(vo.getPassword());
-        user.setStatus(vo.getStatus() == null ? 0 : vo.getStatus());
-        return user;
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public Date getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Long getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Long updatedBy) {
+        this.updatedBy = updatedBy;
     }
 }

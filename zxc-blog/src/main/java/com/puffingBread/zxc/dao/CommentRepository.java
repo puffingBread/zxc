@@ -1,8 +1,9 @@
 package com.puffingBread.zxc.dao;
 
 import com.puffingBread.zxc.model.Comment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -12,6 +13,13 @@ import java.util.List;
  */
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-    @Query("select c from Comment c where c.dynamicId = :dynamicId")
-    List<Comment> findByDynamicId(Long dynamicId);
+    List<Comment> findByDynamicIdAndStatus(Long dynamicId, Integer status);
+
+    Integer countByDynamicIdAndStatus(Long dynamic, Integer status);
+
+    Comment findByIdAndStatus(Long id, Integer status);
+
+    Page<Comment> findByDynamicIdAndStatus(Long dynamicId, Integer status, Pageable pageable);
+
+    Page<Comment> findByUserIdAndStatus(Long userId, Integer status, Pageable pageable);
 }

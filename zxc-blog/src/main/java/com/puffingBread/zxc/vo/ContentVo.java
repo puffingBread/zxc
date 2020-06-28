@@ -1,5 +1,7 @@
 package com.puffingBread.zxc.vo;
 
+import com.puffingBread.zxc.model.Content;
+
 import java.io.Serializable;
 
 /**
@@ -7,24 +9,53 @@ import java.io.Serializable;
  */
 public class ContentVo implements Serializable {
 
-    private long id;
-    private int contentType;
+    private Long id;
+    private Integer contentType;
     private String title;
     private String content;
 
-    public long getId() {
+    public static Content toModel(ContentVo contentVo) {
+        if (contentVo == null) {
+            return null;
+        }
+
+        Content content = new Content();
+        content.setId(contentVo.getId());
+        content.setContentType(contentVo.getContentType());
+        content.setTitle(contentVo.getTitle());
+        content.setContent(contentVo.getContent());
+        content.setStatus(0);
+
+        return content;
+    }
+
+    public static ContentVo toVo(Content content) {
+        if (content == null) {
+            return null;
+        }
+
+        ContentVo contentVo = new ContentVo();
+        contentVo.setId(content.getId());
+        contentVo.setContentType(content.getContentType());
+        contentVo.setTitle(content.getTitle());
+        contentVo.setContent(content.getContent());
+
+        return contentVo;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getContentType() {
+    public Integer getContentType() {
         return contentType;
     }
 
-    public void setContentType(int contentType) {
+    public void setContentType(Integer contentType) {
         this.contentType = contentType;
     }
 
@@ -42,16 +73,6 @@ public class ContentVo implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return "ContentVo{" +
-                "id=" + id +
-                ", contentType=" + contentType +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                '}';
     }
 }
 

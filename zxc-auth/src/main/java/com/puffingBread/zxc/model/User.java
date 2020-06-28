@@ -1,19 +1,21 @@
 package com.puffingBread.zxc.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
-/**
- * Created by Administrator on 2017/8/5.
- */
 @Entity
 public class User {
-    private long userId;
-    private String userName;
+    private Long id;
+    private String username;
     private String password;
-    private int status;
+    private String mobilePhoneNum;
+    private Date createdTime;
+    private Date updatedTime;
+    private Long createdBy;
+    private Long updatedBy;
+    private String status;
 
     @Id
-    @Column(name = "user_id")
     @TableGenerator(name = "PKGenerator",
             table = "id_holder",
             pkColumnName = "id_name",
@@ -21,26 +23,27 @@ public class User {
             pkColumnValue = "UserId",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "PKGenerator")
-    public long getUserId() {
-        return userId;
+    @Column(name = "id")
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    @Basic
-    @Column(name = "user_name", nullable = false, length = 30)
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "password", nullable = false, length = 30)
+    @Column(name = "username")
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Basic
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -50,14 +53,65 @@ public class User {
     }
 
     @Basic
-    @Column(name = "status", nullable = false)
-    public int getStatus() {
+    @Column(name = "mobile_phone_num")
+    public String getMobilePhoneNum() {
+        return mobilePhoneNum;
+    }
+
+    public void setMobilePhoneNum(String mobilePhoneNum) {
+        this.mobilePhoneNum = mobilePhoneNum;
+    }
+
+    @Basic
+    @Column(name = "created_time")
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    @Basic
+    @Column(name = "updated_time")
+    public Date getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
+    @Basic
+    @Column(name = "created_by")
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    @Basic
+    @Column(name = "updated_by")
+    public Long getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Long updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    @Basic
+    @Column(name = "status")
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -66,20 +120,31 @@ public class User {
 
         User user = (User) o;
 
-        if (userId != user.userId) return false;
-        if (status != user.status) return false;
-        if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (mobilePhoneNum != null ? !mobilePhoneNum.equals(user.mobilePhoneNum) : user.mobilePhoneNum != null)
+            return false;
+        if (createdTime != null ? !createdTime.equals(user.createdTime) : user.createdTime != null) return false;
+        if (updatedTime != null ? !updatedTime.equals(user.updatedTime) : user.updatedTime != null) return false;
+        if (createdBy != null ? !createdBy.equals(user.createdBy) : user.createdBy != null) return false;
+        if (updatedBy != null ? !updatedBy.equals(user.updatedBy) : user.updatedBy != null) return false;
+        if (status != null ? !status.equals(user.status) : user.status != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (userId ^ (userId >>> 32));
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + status;
+        result = 31 * result + (mobilePhoneNum != null ? mobilePhoneNum.hashCode() : 0);
+        result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
+        result = 31 * result + (updatedTime != null ? updatedTime.hashCode() : 0);
+        result = 31 * result + (createdBy != null ? createdBy.hashCode() : 0);
+        result = 31 * result + (updatedBy != null ? updatedBy.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }
 }
