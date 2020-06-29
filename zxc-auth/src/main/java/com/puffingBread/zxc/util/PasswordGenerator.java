@@ -2,6 +2,8 @@ package com.puffingBread.zxc.util;
 
 import com.alibaba.nacos.common.utils.Md5Utils;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * Created by kevin on 16-9-18.
  */
@@ -17,7 +19,7 @@ public class PasswordGenerator {
 //        Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
 //        return md5PasswordEncoder.encodePassword(password, saltSource.getSalt(userDetails));
 
-        return Md5Utils.getMD5(password, "utf-8");
+        return Md5Utils.getMD5(password, StandardCharsets.UTF_8.name());
     }
 
     public static void main(String[] args) {

@@ -6,6 +6,7 @@ import com.puffingBread.zxc.model.User;
 import com.puffingBread.zxc.service.UserService;
 import com.puffingBread.zxc.util.PasswordGenerator;
 import com.puffingBread.zxc.vo.UserVo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
         }
 
         String username = userVo.getUsername();
-        if (!BlankUtil.isBlank(username)) {
+        if (StringUtils.isNotBlank(username)) {
             User byUsername = userRepository.findByUsername(username);
             if (byUsername != null) {
                 throw new ReadMessageException("username is already exist!");

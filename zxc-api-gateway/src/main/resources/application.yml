@@ -1,11 +1,29 @@
+server:
+  port: 8082
+
 spring:
   application:
     name: zxc-api-gateway
   cloud:
-#    config:
-#      uri: http://localhost:8888
+    config:
+      uri: http://localhost:8888
     # 注册及配置中心
     nacos:
       discovery:
         # 注册中心地址
         server-addr: 127.0.0.1:8848
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: zxc_auth
+          uri: lb://zxc-auth:8899
+          predicates:
+            - Path=/auth/**
+        - id: zxc_blog
+          uri: lb://zxc-blog:8081
+          predicates:
+            - Path=/blog/**

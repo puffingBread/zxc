@@ -1,6 +1,9 @@
 package com.puffingBread.zxc.vo;
 
-public class RspVo<T> {
+import java.io.Serializable;
+
+public class RspVo<T> implements Serializable {
+
     int resultCode;
     String resultMsg;
     T data;

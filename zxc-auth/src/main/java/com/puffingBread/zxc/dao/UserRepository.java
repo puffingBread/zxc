@@ -12,8 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByIdAndStatus(Long id, String status);
 
-    User save(User user);
-
     @Query("update User u set u.status = -2 where u.id = :id")
     void delete(Long id);
 

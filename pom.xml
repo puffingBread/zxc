@@ -17,7 +17,6 @@
         <module>zxc-api-gateway</module>
         <module>zxc-config</module>
         <module>zxc-blog</module>
-        <module>zxc-admin</module>
     </modules>
     <packaging>pom</packaging>
 
