@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class GatewayConfig {
 
     @Bean
-    public UserAuthFilter tokenFilter() {
+    public UserAuthFilter userAuthFilter() {
         return new UserAuthFilter();
     }
 

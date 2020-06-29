@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: zxc-api-gateway
+  profiles:
+    active: local
   cloud:
     config:
       uri: http://localhost:8082
@@ -12,7 +14,6 @@ spring:
       discovery:
         # 注册中心地址
         server-addr: 127.0.0.1:8848
-
     gateway:
       discovery:
         locator:
