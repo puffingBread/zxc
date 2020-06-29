@@ -1,12 +1,12 @@
 server:
-  port: 8082
+  port: 8888
 
 spring:
   application:
     name: zxc-api-gateway
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://localhost:8082
     # 注册及配置中心
     nacos:
       discovery:

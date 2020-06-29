@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: 8082
 
 # git管理配置
 spring:
@@ -17,8 +17,8 @@ spring:
             password:
 
 # 开启本地配置
-#  profiles:
-#    active: native
+  profiles:
+    active: local
 
 
 
