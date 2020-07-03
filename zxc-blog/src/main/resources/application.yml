@@ -12,9 +12,9 @@ spring:
     active: local
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/zxc_blog?characterEncoding=UTF-8&useSSL=false&&serverTimezone=GMT
-      username: root
-      password: root
+      url: jdbc:mysql://192.168.230.10:3306/zxc_blog?characterEncoding=UTF-8&useSSL=false&&serverTimezone=GMT
+      username: ${mysql.username}
+      password: ${mysql.password}
       initialize: false
       test-on-borrow: false
       test-on-return: false
@@ -31,3 +31,11 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:/liquibase/db.changelog.xml
+  data:
+    mongodb:
+      host: ${mongo.host}
+      username: ${mongo.username}
+      password: ${mongo.password}
+  redis:
+    host: ${redis.host}
+    database: 0
