@@ -78,27 +78,18 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
-        <filters>
-            <filter>../conf/${env}.properties</filter>
-        </filters>
-        <resources>
-            <resource>
-                <directory>src/main/resources/</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+<!--        <finalName>${project.artifactId}</finalName>-->
+<!--        <filters>-->
+<!--            <filter>../conf/${env}.properties</filter>-->
+<!--        </filters>-->
+<!--        <resources>-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources/</directory>-->
+<!--                <filtering>true</filtering>-->
+<!--            </resource>-->
+<!--        </resources>-->
 
         <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-            </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
             </plugin>
