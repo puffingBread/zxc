@@ -7,22 +7,22 @@ spring:
     config:
       uri: http://localhost:8082
   application:
-      name: zxc-blog
+    name: zxc-blog
   profiles:
     active: local
   datasource:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://192.168.230.10:3306/zxc_blog?characterEncoding=UTF-8&useSSL=false&&serverTimezone=GMT
-      username: ${mysql.username}
-      password: ${mysql.password}
-      initialize: false
-      test-on-borrow: false
-      test-on-return: false
-      test-while-idle: true
-      max-wait-millis: 30000
-      validation-query: SELECT 1
-      time-between-eviction-runs-millis: 20000
-      min-evictable-idle-time-millis: 28700
+    driver-class-name: ${jdbc.driver}
+    url: ${blog.jdbc.url}
+    username: ${jdbc.username}
+    password: ${jdbc.password}
+    initialize: false
+    test-on-borrow: false
+    test-on-return: false
+    test-while-idle: true
+    max-wait-millis: 30000
+    validation-query: SELECT 1
+    time-between-eviction-runs-millis: 20000
+    min-evictable-idle-time-millis: 28700
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     properties:
