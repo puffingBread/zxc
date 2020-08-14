@@ -5,7 +5,7 @@
 
     <parent>
         <artifactId>zxc</artifactId>
-        <groupId>com.puffingBread</groupId>
+        <groupId>com.humor</groupId>
         <version>1.0</version>
     </parent>
 
@@ -15,14 +15,14 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <start.class>com.puffingBread.zxc.AuthApplication</start.class>
+        <start.class>com.humor.zxc.AuthApplication</start.class>
         <docker.image.prefix>localhost:5000</docker.image.prefix>
     </properties>
 
     <dependencies>
 
         <dependency>
-            <groupId>com.puffingBread</groupId>
+            <groupId>com.humor</groupId>
             <artifactId>zxc-common</artifactId>
             <version>1.0</version>
         </dependency>

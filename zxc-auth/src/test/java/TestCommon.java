@@ -1,5 +1,5 @@
-//import com.puffingBread.zxc.AuthApplication;
-//import com.puffingBread.zxc.service.OAuthAgentService;
+//import com.humor.zxc.AuthApplication;
+//import com.humor.zxc.service.OAuthAgentService;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
