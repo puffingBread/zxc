@@ -36,6 +36,8 @@ spring:
       host: ${mongo.host}
       username: ${mongo.username}
       password: ${mongo.password}
+#      mongodb3.x之后不会自动创建索引，需要显式开启
+      auto-index-creation: true
   redis:
     host: ${redis.host}
     database: 0
