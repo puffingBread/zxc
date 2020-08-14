@@ -11,8 +11,6 @@ import reactor.core.publisher.Mono;
 
 public class UserAuthFilter implements GlobalFilter, Ordered {
 
-    private Logger logger = LoggerFactory.getLogger(UserAuthFilter.class);
-
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         return chain.filter(exchange);
