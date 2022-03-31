@@ -29,7 +29,7 @@
         <java.version>1.8</java.version>
         <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>
         <docker.image.prefix>localhost:5000</docker.image.prefix>
-        <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
+        <spring.boot.version>2.5.12</spring.boot.version>
         <spring.cloud.version>2.2.3.RELEASE</spring.cloud.version>
     </properties>
 
